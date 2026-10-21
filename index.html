@@ -1,1030 +1,355 @@
 <!DOCTYPE html>
-<html lang="en" class="dark scroll-smooth">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AURA STUDIOS — Fine Art & Commercial Photography</title>
-  
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Google Fonts: Cormorant Garamond & Inter -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- Font Awesome Icons CDN -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naitrika Real Estates</title>
 
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            serif: ['"Cormorant Garamond"', 'serif'],
-            sans: ['"Inter"', 'sans-serif'],
-          },
-          colors: {
-            aura: {
-              gold: '#d4af37',
-              accent: '#8b5cf6',
-              darkBg: '#090a0f',
-              lightBg: '#f8f9fc',
-            }
-          },
-          animation: {
-            'ambient-pulse': 'ambientPulse 14s ease-in-out infinite alternate',
-            'float-subtle': 'floatSubtle 6s ease-in-out infinite',
-          },
-          keyframes: {
-            ambientPulse: {
-              '0%': { transform: 'translate(0, 0) scale(1)' },
-              '50%': { transform: 'translate(30px, -40px) scale(1.1)' },
-              '100%': { transform: 'translate(-20px, 20px) scale(0.95)' },
-            },
-            floatSubtle: {
-              '0%, 100%': { transform: 'translateY(0px)' },
-              '50%': { transform: 'translateY(-8px)' },
-            }
-          }
-        }
-      }
-    }
-  </script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <style>
-    /* CSS Variables & Custom Theme Transitions */
-    :root {
-      --bg-color: #090a0f;
-      --text-main: #f3f4f6;
-      --text-muted: #9ca3af;
-      --glass-bg: rgba(18, 20, 29, 0.55);
-      --glass-border: rgba(255, 255, 255, 0.08);
-      --glass-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-      --pill-bg: rgba(255, 255, 255, 0.05);
-      --input-bg: rgba(255, 255, 255, 0.03);
-      --blob-1: rgba(124, 58, 237, 0.28);
-      --blob-2: rgba(14, 165, 233, 0.22);
-      --blob-3: rgba(212, 175, 55, 0.15);
-    }
+<style>
+:root{
+  --bg:#f5f5f5;
+  --text:#111;
+  --glass:rgba(0,0,0,0.05);
+  --gold:#d4af37;
+}
 
-    html:not(.dark) {
-      --bg-color: #f8f9fc;
-      --text-main: #111827;
-      --text-muted: #6b7280;
-      --glass-bg: rgba(255, 255, 255, 0.75);
-      --glass-border: rgba(0, 0, 0, 0.08);
-      --glass-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
-      --pill-bg: rgba(0, 0, 0, 0.04);
-      --input-bg: rgba(0, 0, 0, 0.02);
-      --blob-1: rgba(167, 139, 250, 0.25);
-      --blob-2: rgba(125, 211, 252, 0.25);
-      --blob-3: rgba(253, 224, 71, 0.25);
-    }
+.dark{
+  --bg:#0a0a0a;
+  --text:#fff;
+  --glass:rgba(255,255,255,0.06);
+}
 
-    body {
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      font-family: 'Inter', sans-serif;
-      overflow-x: hidden;
-      transition: background-color 0.5s ease, color 0.5s ease;
-    }
+html{scroll-behavior:smooth;}
 
-    /* Ambient Dynamic Background Mesh */
-    .bg-mesh {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -2;
-      pointer-events: none;
-      overflow: hidden;
-    }
+body{
+  margin:0;
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  transition:0.4s;
+}
 
-    .blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(120px);
-      transition: background 0.8s ease;
-    }
+/* INTRO */
+#intro{
+  position:fixed;
+  inset:0;
+  background:#000;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+  animation:fadeOut 0.8s ease 1.3s forwards;
+}
 
-    .blob-1 {
-      top: -10%;
-      left: -10%;
-      width: 55vw;
-      height: 55vw;
-      background: var(--blob-1);
-    }
+#intro h1{
+  font-family:'Playfair Display',serif;
+  font-size:42px;
+  background:linear-gradient(90deg,#d4af37,#fff,#d4af37);
+  background-size:200%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:shine 1.3s linear infinite;
+}
 
-    .blob-2 {
-      bottom: -10%;
-      right: -10%;
-      width: 60vw;
-      height: 60vw;
-      background: var(--blob-2);
-    }
+@keyframes shine{
+  0%{background-position:-200%;}
+  100%{background-position:200%;}
+}
 
-    .blob-3 {
-      top: 35%;
-      left: 30%;
-      width: 40vw;
-      height: 40vw;
-      background: var(--blob-3);
-    }
+@keyframes fadeOut{
+  to{opacity:0;visibility:hidden;}
+}
 
-    /* Glassmorphism Styling */
-    .glass-card {
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
-      box-shadow: var(--glass-shadow);
-      transition: background 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease, transform 0.3s ease;
-    }
+/* NAV */
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 30px;
+  backdrop-filter:blur(20px);
+  background:var(--glass);
+  border-bottom:1px solid rgba(255,255,255,0.1);
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
 
-    .glass-pill {
-      background: var(--glass-bg);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border: 1px solid var(--glass-border);
-      box-shadow: var(--glass-shadow);
-      transition: all 0.4s ease;
-    }
+.logo{
+  font-family:'Playfair Display',serif;
+  color:var(--gold);
+  font-size:20px;
+}
 
-    .glass-btn {
-      background: var(--pill-bg);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--glass-border);
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
+nav ul{
+  display:flex;
+  list-style:none;
+  gap:20px;
+  align-items:center;
+}
 
-    .glass-btn:hover {
-      border-color: var(--text-main);
-      transform: translateY(-2px);
-    }
+nav a{
+  text-decoration:none;
+  color:var(--text);
+}
 
-    .glass-input {
-      background: var(--input-bg);
-      border: 1px solid var(--glass-border);
-      color: var(--text-main);
-      backdrop-filter: blur(10px);
-      transition: all 0.3s ease;
-    }
+nav a:hover{color:var(--gold);}
 
-    .glass-input:focus {
-      outline: none;
-      border-color: #8b5cf6;
-      box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
-    }
+.toggle{cursor:pointer;}
 
-    /* Subtle Cursor Glow */
-    #cursor-light {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 350px;
-      height: 350px;
-      margin-left: -175px;
-      margin-top: -175px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(139, 92, 246, 0.07) 0%, rgba(255,255,255,0) 70%);
-      pointer-events: none;
-      z-index: 9999;
-      transition: transform 0.08s ease-out;
-      mix-blend-mode: screen;
-    }
+/* HERO */
+section{
+  padding:60px 20px;
+  text-align:center;
+}
 
-    /* Smooth Scroll Reveals */
-    .reveal {
-      opacity: 0;
-      transform: translateY(25px);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
+.hero h1{
+  font-size:56px;
+  color:var(--gold);
+}
 
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
+.hero p{
+  font-size:22px;
+}
 
-    /* Masonry & Item Animations */
-    .gallery-item {
-      break-inside: avoid;
-      margin-bottom: 1.5rem;
-    }
+/* GLASS */
+.glass{
+  background:var(--glass);
+  backdrop-filter:blur(25px);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:20px;
+}
 
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 7px;
-    }
-    ::-webkit-scrollbar-track {
-      background: var(--bg-color);
-    }
-    ::-webkit-scrollbar-thumb {
-      background: rgba(150, 150, 150, 0.25);
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: rgba(150, 150, 150, 0.45);
-    }
+/* ABOUT */
+.about-card{
+  max-width:700px;
+  margin:auto;
+  padding:30px;
+}
 
-    /* Toast Animation */
-    #toast {
-      transform: translateY(100px);
-      opacity: 0;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    #toast.show {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  </style>
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+}
+
+.card{
+  border-radius:20px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:0.4s;
+}
+
+.card:hover{
+  transform:translateY(-10px);
+}
+
+.card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+}
+
+.info{padding:12px;}
+.dimension{color:var(--gold);}
+
+/* CONTACT */
+.contact-box{
+  max-width:400px;
+  margin:auto;
+  padding:25px;
+}
+
+.contact-box a{
+  display:block;
+  margin:10px;
+  color:var(--gold);
+  text-decoration:none;
+}
+
+/* MODAL */
+#modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.7);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+.modal-box{
+  position:relative; /* FIX */
+  background:#fff;
+  color:#000;
+  width:90%;
+  max-width:500px;
+  border-radius:15px;
+  overflow:hidden;
+}
+
+.modal-box img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+}
+
+.modal-content{padding:15px;}
+
+.btn{
+  display:inline-block;
+  margin-top:10px;
+  padding:8px 12px;
+  border-radius:15px;
+  background:var(--gold);
+  color:#000;
+  text-decoration:none;
+}
+
+/* CLOSE BUTTON FIX */
+.close{
+  position:absolute;
+  top:10px;
+  right:10px;
+  background:rgba(0,0,0,0.6);
+  color:#fff;
+  padding:5px 10px;
+  border-radius:50%;
+  font-size:18px;
+  cursor:pointer;
+  z-index:10;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:15px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  nav{
+    flex-direction:column;
+    gap:10px;
+  }
+
+  nav ul{
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
+  .hero h1{
+    font-size:38px;
+  }
+}
+</style>
 </head>
-<body class="relative min-h-screen antialiased selection:bg-purple-500 selection:text-white">
 
-  <!-- Cursor Light Follower -->
-  <div id="cursor-light"></div>
+<body>
 
-  <!-- Ambient Animated Mesh Background -->
-  <div class="bg-mesh">
-    <div class="blob blob-1 animate-ambient-pulse"></div>
-    <div class="blob blob-2 animate-ambient-pulse" style="animation-delay: -5s;"></div>
-    <div class="blob blob-3 animate-ambient-pulse" style="animation-delay: -10s;"></div>
+<div id="intro">
+  <h1>Naitrika Real Estates</h1>
+</div>
+
+<nav>
+  <div class="logo">NAITRIKA</div>
+
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#properties">Properties</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li class="toggle" onclick="toggleTheme()">🌗</li>
+  </ul>
+</nav>
+
+<section id="home" class="hero">
+  <h1>Naitrika Real Estates</h1>
+  <p>From Land To Luxury Living</p>
+</section>
+
+<section id="about">
+  <h2>About Us</h2>
+  <div class="about-card glass">
+    <p>
+      Naitrika Real Estates specializes in premium plots, villas, and luxury properties.
+    </p>
   </div>
+</section>
 
-  <!-- Floating Navigation Bar -->
-  <header class="fixed top-5 inset-x-0 z-50 flex justify-center px-4 transition-all duration-300" id="main-header">
-    <nav class="glass-pill rounded-full px-6 py-3 flex items-center justify-between w-full max-w-6xl gap-4">
-      
-      <!-- Logo -->
-      <a href="#home" class="flex items-center gap-2 group">
-        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-purple-500 via-indigo-400 to-amber-300 p-[1px] flex items-center justify-center">
-          <div class="w-full h-full bg-neutral-950 dark:bg-neutral-950 rounded-full flex items-center justify-center group-hover:bg-transparent transition-all duration-300">
-            <span class="font-serif italic font-bold text-xs text-white">A</span>
-          </div>
-        </div>
-        <div class="flex flex-col">
-          <span class="font-serif font-bold text-lg tracking-widest text-current leading-none">AURA</span>
-          <span class="text-[8px] tracking-[0.3em] opacity-60 uppercase font-sans font-semibold">Studios</span>
-        </div>
-      </a>
+<section id="properties">
+  <h2>Properties</h2>
+  <div class="grid" id="grid"></div>
+</section>
 
-      <!-- Desktop Navigation Links -->
-      <div class="hidden md:flex items-center gap-8 text-xs uppercase tracking-widest font-medium opacity-80">
-        <a href="#home" class="hover:opacity-100 transition-opacity active-link">Home</a>
-        <a href="#gallery" class="hover:opacity-100 transition-opacity">Gallery</a>
-        <a href="#showcase" class="hover:opacity-100 transition-opacity">Showcase</a>
-        <a href="#about" class="hover:opacity-100 transition-opacity">About</a>
-        <a href="#services" class="hover:opacity-100 transition-opacity">Services</a>
-        <a href="#contact" class="hover:opacity-100 transition-opacity">Contact</a>
-      </div>
+<section id="contact">
+  <h2>Contact</h2>
+  <div class="contact-box glass">
+    <a href="tel:+919999999999">📞 Call</a>
+    <a href="https://wa.me/919999999999">💬 WhatsApp</a>
+    <a href="mailto:info@naitrika.com">✉️ Email</a>
+  </div>
+</section>
 
-      <!-- Theme Switcher & Actions -->
-      <div class="flex items-center gap-3">
-        
-        <!-- Theme Switch Toggle Button -->
-        <button id="theme-toggle" aria-label="Toggle Theme" class="w-9 h-9 rounded-full glass-btn flex items-center justify-center text-sm transition-transform active:scale-95">
-          <i class="fa-solid fa-moon text-purple-400 dark:hidden"></i>
-          <i class="fa-solid fa-sun text-amber-300 hidden dark:block"></i>
-        </button>
+<footer>© 2026 Naitrika Real Estates</footer>
 
-        <!-- CTA Button -->
-        <a href="#contact" class="hidden sm:flex glass-btn text-[11px] uppercase tracking-wider font-semibold px-4 py-2 rounded-full items-center gap-2">
-          <span>Inquire</span>
-          <i class="fa-solid fa-arrow-right text-[9px] opacity-70"></i>
-        </a>
-
-        <!-- Mobile Menu Toggle Button -->
-        <button id="mobile-menu-btn" class="md:hidden opacity-80 hover:opacity-100 p-2">
-          <i class="fa-solid fa-bars text-base"></i>
-        </button>
-      </div>
-    </nav>
-
-    <!-- Mobile Dropdown Navigation -->
-    <div id="mobile-menu" class="hidden absolute top-16 inset-x-4 glass-card rounded-2xl p-6 flex flex-col gap-4 text-center text-sm font-medium border md:hidden shadow-2xl">
-      <a href="#home" class="mobile-link py-2 border-b border-black/5 dark:border-white/5">Home</a>
-      <a href="#gallery" class="mobile-link py-2 border-b border-black/5 dark:border-white/5">Gallery</a>
-      <a href="#showcase" class="mobile-link py-2 border-b border-black/5 dark:border-white/5">Showcase</a>
-      <a href="#about" class="mobile-link py-2 border-b border-black/5 dark:border-white/5">About</a>
-      <a href="#services" class="mobile-link py-2 border-b border-black/5 dark:border-white/5">Services</a>
-      <a href="#contact" class="mobile-link py-2">Contact</a>
-    </div>
-  </header>
-
-  <!-- Hero Section -->
-  <section id="home" class="relative min-h-screen flex items-center justify-center pt-28 pb-16 px-4 md:px-8">
-    <div class="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-      
-      <!-- Hero Header Content -->
-      <div class="lg:col-span-7 space-y-8 z-10 text-left">
-        
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-card border text-[11px] font-medium tracking-wider uppercase opacity-80">
-          <span class="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse"></span>
-          <span>Fine Art & Architectural Editorial</span>
-        </div>
-
-        <h1 class="text-5xl sm:text-6xl md:text-7xl font-serif font-normal leading-[1.05] tracking-tight">
-          Capturing Moments in <span class="italic font-light text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-indigo-400 to-amber-400">Pure Light</span> & Shadows.
-        </h1>
-
-        <p class="text-sm md:text-base font-light leading-relaxed max-w-xl opacity-80">
-          Minimalist photographic art engineered with precision. Documenting high-fashion editorial, quiet architectural forms, and raw human emotion across the world.
-        </p>
-
-        <!-- CTA Action Buttons -->
-        <div class="flex flex-wrap items-center gap-4 pt-2">
-          <a href="#gallery" class="px-7 py-3.5 rounded-full bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 font-medium text-xs uppercase tracking-widest hover:opacity-90 transition-all shadow-lg flex items-center gap-3">
-            <span>Explore Portfolio</span>
-            <i class="fa-solid fa-arrow-down text-[10px]"></i>
-          </a>
-          <a href="#contact" class="glass-btn px-6 py-3.5 rounded-full text-xs font-medium uppercase tracking-widest flex items-center gap-2">
-            <span>Book Commission</span>
-          </a>
-        </div>
-
-        <!-- Subtle Stats -->
-        <div class="grid grid-cols-3 gap-6 pt-8 border-t border-black/10 dark:border-white/10 max-w-md">
-          <div>
-            <div class="text-2xl font-serif font-bold">14+</div>
-            <div class="text-[10px] uppercase tracking-wider opacity-60">Years Experience</div>
-          </div>
-          <div>
-            <div class="text-2xl font-serif font-bold">500+</div>
-            <div class="text-[10px] uppercase tracking-wider opacity-60">Projects Mastered</div>
-          </div>
-          <div>
-            <div class="text-2xl font-serif font-bold">22</div>
-            <div class="text-[10px] uppercase tracking-wider opacity-60">Global Awards</div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Hero Featured Visual Frame -->
-      <div class="lg:col-span-5 relative z-10">
-        <div class="relative mx-auto max-w-md lg:max-w-none">
-          <div class="relative glass-card p-3 rounded-3xl overflow-hidden group">
-            <div class="relative aspect-[4/5] rounded-2xl overflow-hidden bg-neutral-900">
-              <img 
-                src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1000&q=80" 
-                alt="Aura Studio Featured Work" 
-                onerror="this.src='https://placehold.co/800x1000/1e1e2d/ffffff?text=Aura+Studios';"
-                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-1000 ease-out"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80"></div>
-              
-              <!-- Floating Overlay Badge -->
-              <div class="absolute bottom-5 inset-x-5 glass-pill p-4 rounded-xl flex items-center justify-between">
-                <div>
-                  <span class="text-[9px] font-bold uppercase tracking-widest text-purple-400 block">Featured Frame</span>
-                  <span class="text-xs font-serif font-medium text-white">Shinjuku Midnight Reflections</span>
-                </div>
-                <span class="text-[10px] font-mono text-slate-300">f/1.4 • 1/500s</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Filterable Gallery Section -->
-  <section id="gallery" class="py-24 px-4 md:px-8 max-w-7xl mx-auto relative z-10">
-    
-    <!-- Header -->
-    <div class="text-center max-w-2xl mx-auto space-y-3 mb-12 reveal">
-      <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-purple-500">Selected Works</span>
-      <h2 class="text-4xl md:text-5xl font-serif">Curated Gallery</h2>
-      <p class="text-xs md:text-sm font-light opacity-70">Filtered by genre. Click any master frame for high-resolution inspection and EXIF metadata.</p>
-    </div>
-
-    <!-- Category Filters -->
-    <div class="flex flex-wrap justify-center items-center gap-2 mb-12 reveal">
-      <button class="filter-btn active glass-pill px-5 py-2 rounded-full text-[11px] font-semibold tracking-wider transition-all" data-filter="all">ALL WORKS</button>
-      <button class="filter-btn glass-btn px-5 py-2 rounded-full text-[11px] font-semibold tracking-wider opacity-70 transition-all" data-filter="editorial">EDITORIAL</button>
-      <button class="filter-btn glass-btn px-5 py-2 rounded-full text-[11px] font-semibold tracking-wider opacity-70 transition-all" data-filter="architecture">ARCHITECTURE</button>
-      <button class="filter-btn glass-btn px-5 py-2 rounded-full text-[11px] font-semibold tracking-wider opacity-70 transition-all" data-filter="landscape">LANDSCAPE</button>
-      <button class="filter-btn glass-btn px-5 py-2 rounded-full text-[11px] font-semibold tracking-wider opacity-70 transition-all" data-filter="portrait">PORTRAITS</button>
-    </div>
-
-    <!-- Responsive Masonry Grid -->
-    <div id="gallery-grid" class="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
-      <!-- Items generated by JavaScript -->
-    </div>
-
-  </section>
-
-  <!-- Before / After Retouching Showcase Section -->
-  <section id="showcase" class="py-24 px-4 md:px-8 max-w-6xl mx-auto relative z-10">
-    <div class="glass-card rounded-3xl p-6 md:p-10 border reveal">
-      
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        
-        <!-- Interactive Information -->
-        <div class="lg:col-span-5 space-y-5">
-          <div class="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-amber-500 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
-            <i class="fa-solid fa-sliders text-xs"></i>
-            <span>Interactive Retouching View</span>
-          </div>
-
-          <h3 class="text-3xl md:text-4xl font-serif">Master Color Grading</h3>
-          <p class="text-xs md:text-sm font-light leading-relaxed opacity-80">
-            Drag the handle horizontally to evaluate the raw sensor data vs the final hand-crafted color grade and skin retouching.
-          </p>
-
-          <div class="space-y-2 text-xs font-mono opacity-70 pt-2">
-            <div class="flex items-center gap-2">
-              <i class="fa-solid fa-camera text-purple-400"></i>
-              <span>Shot on Hasselblad X2D 100C + XCD 85mm</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <i class="fa-solid fa-palette text-amber-400"></i>
-              <span>Color Profile: Aura Film Emulation v3</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Before/After Split Container -->
-        <div class="lg:col-span-7">
-          <div id="before-after-container" class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden select-none cursor-ew-resize border shadow-2xl">
-            
-            <!-- After Image (Edited Master) -->
-            <img 
-              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80" 
-              alt="After Color Grade" 
-              onerror="this.src='https://placehold.co/1200x900/1e1e2d/ffffff?text=Master+Grade';"
-              class="absolute inset-0 w-full h-full object-cover"
-            />
-            <span class="absolute top-4 right-4 bg-black/70 backdrop-blur-md text-[9px] uppercase font-bold tracking-widest text-white px-3 py-1 rounded-full border border-white/10">Color Graded</span>
-
-            <!-- Before Image Layer (Raw) -->
-            <div id="before-image-wrap" class="absolute inset-y-0 left-0 w-1/2 overflow-hidden border-r-2 border-white">
-              <img 
-                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80&sat=-80&con=10" 
-                alt="Before Edit" 
-                onerror="this.src='https://placehold.co/1200x900/11111a/ffffff?text=RAW+Capture';"
-                class="absolute inset-0 w-full h-full object-cover max-w-none"
-                id="before-img-element"
-              />
-              <span class="absolute top-4 left-4 bg-black/70 backdrop-blur-md text-[9px] uppercase font-bold tracking-widest text-slate-300 px-3 py-1 rounded-full border border-white/10">Unedited RAW</span>
-            </div>
-
-            <!-- Slider Control Handle -->
-            <div id="slider-handle" class="absolute top-0 bottom-0 left-1/2 -ml-3 w-6 flex items-center justify-center pointer-events-none">
-              <div class="w-7 h-7 rounded-full bg-white text-neutral-900 flex items-center justify-center shadow-xl text-xs font-bold">
-                <i class="fa-solid fa-left-right text-[9px]"></i>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- About Photographer Section -->
-  <section id="about" class="py-24 px-4 md:px-8 max-w-6xl mx-auto relative z-10">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-      
-      <!-- Artist Portrait -->
-      <div class="lg:col-span-5 reveal">
-        <div class="relative glass-card p-3 rounded-3xl overflow-hidden">
-          <img 
-            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" 
-            alt="Lead Artist AURA Studios" 
-            onerror="this.src='https://placehold.co/800x1000/1e1e2d/ffffff?text=Aura+Artist';"
-            class="w-full aspect-[3/4] object-cover rounded-2xl"
-          />
-        </div>
-      </div>
-
-      <!-- Narrative -->
-      <div class="lg:col-span-7 space-y-6 reveal">
-        <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-purple-500">The Artist</span>
-        <h3 class="text-4xl md:text-5xl font-serif">Julian Vance</h3>
-        <p class="text-sm md:text-base font-light leading-relaxed opacity-80">
-          Founded on the philosophy that true art exists in subtle moments, AURA Studios crafts imagery that transcends conventional commercial photography.
-        </p>
-        <p class="text-xs md:text-sm font-light leading-relaxed opacity-70">
-          With assignments ranging from luxury architectural stills in Geneva to high-fashion campaigns in Milan, every image is meticulously sculpted using medium-format precision and bespoke lighting setups.
-        </p>
-
-        <!-- Gear Badges -->
-        <div class="pt-2 space-y-3">
-          <h4 class="text-[10px] uppercase font-semibold tracking-widest opacity-60">Primary Precision Gear</h4>
-          <div class="flex flex-wrap gap-2">
-            <span class="glass-btn text-[11px] px-3.5 py-1.5 rounded-full font-mono">Hasselblad X2D 100C</span>
-            <span class="glass-btn text-[11px] px-3.5 py-1.5 rounded-full font-mono">Leica M11 Monochrom</span>
-            <span class="glass-btn text-[11px] px-3.5 py-1.5 rounded-full font-mono">Profoto Pro-11 Lighting</span>
-            <span class="glass-btn text-[11px] px-3.5 py-1.5 rounded-full font-mono">Capture One Pro</span>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Services & Pricing Cards -->
-  <section id="services" class="py-24 px-4 md:px-8 max-w-6xl mx-auto relative z-10">
-    
-    <div class="text-center max-w-xl mx-auto space-y-3 mb-16 reveal">
-      <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-purple-500">Commissions</span>
-      <h2 class="text-4xl md:text-5xl font-serif">Services & Pricing</h2>
-      <p class="text-xs md:text-sm font-light opacity-70">Tailored packages designed for individuals, architects, and luxury editorial brands.</p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      
-      <!-- Card 1 -->
-      <div class="glass-card p-8 rounded-3xl flex flex-col justify-between space-y-8 reveal border">
-        <div class="space-y-4">
-          <span class="text-[10px] font-bold uppercase tracking-widest text-purple-400">Personal</span>
-          <h3 class="text-2xl font-serif">Fine Art Portraiture</h3>
-          <div class="text-3xl font-serif font-bold">$1,200 <span class="text-xs font-sans font-normal opacity-60">/ Session</span></div>
-          <ul class="space-y-3 text-xs font-light opacity-80 pt-4 border-t border-black/5 dark:border-white/5">
-            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400 text-[10px]"></i> 3 Hours Studio or Location</li>
-            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400 text-[10px]"></i> 15 Hand-Mastered High-Res Files</li>
-            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400 text-[10px]"></i> Full Commercial Usage License</li>
-          </ul>
-        </div>
-        <a href="#contact" class="glass-btn w-full py-3 rounded-xl text-center text-xs font-semibold uppercase tracking-wider block">Inquire Availability</a>
-      </div>
-
-      <!-- Card 2 (Featured) -->
-      <div class="glass-card p-8 rounded-3xl flex flex-col justify-between space-y-8 reveal border-purple-500/40 relative shadow-2xl">
-        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-purple-600 text-white text-[9px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">
-          Most Requested
-        </div>
-        <div class="space-y-4">
-          <span class="text-[10px] font-bold uppercase tracking-widest text-amber-400">Commercial</span>
-          <h3 class="text-2xl font-serif">Architectural & Spaces</h3>
-          <div class="text-3xl font-serif font-bold">$2,800 <span class="text-xs font-sans font-normal opacity-60">/ Project</span></div>
-          <ul class="space-y-3 text-xs font-light opacity-80 pt-4 border-t border-black/5 dark:border-white/5">
-            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400 text-[10px]"></i> Full Day On-Site Production</li>
-            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400 text-[10px]"></i> Interior & Exterior Blue Hour Captures</li>
-            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400 text-[10px]"></i> Unlimited Worldwide Publishing Rights</li>
-          </ul>
-        </div>
-        <a href="#contact" class="w-full py-3 rounded-xl bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 text-center text-xs font-semibold uppercase tracking-wider block shadow-md">Book Campaign</a>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="glass-card p-8 rounded-3xl flex flex-col justify-between space-y-8 reveal border">
-        <div class="space-y-4">
-          <span class="text-[10px] font-bold uppercase tracking-widest text-indigo-400">Editorial</span>
-          <h3 class="text-2xl font-serif">Fashion & Lookbooks</h3>
-          <div class="text-3xl font-serif font-bold">$4,500 <span class="text-xs font-sans font-normal opacity-60">/ Day</span></div>
-          <ul class="space-y-3 text-xs font-light opacity-80 pt-4 border-t border-black/5 dark:border-white/5">
-            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400 text-[10px]"></i> Creative Direction & Lighting Team</li>
-            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400 text-[10px]"></i> On-Site Capture One Digital Tech</li>
-            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400 text-[10px]"></i> Expedited 48-Hour Proofing Turnaround</li>
-          </ul>
-        </div>
-        <a href="#contact" class="glass-btn w-full py-3 rounded-xl text-center text-xs font-semibold uppercase tracking-wider block">Inquire Availability</a>
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="py-24 px-4 md:px-8 max-w-4xl mx-auto relative z-10">
-    <div class="glass-card rounded-3xl p-8 md:p-12 border relative overflow-hidden reveal">
-      
-      <div class="text-center max-w-xl mx-auto space-y-3 mb-10">
-        <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-purple-500">Initiate Contact</span>
-        <h3 class="text-4xl font-serif">Let's Discuss Your Vision</h3>
-        <p class="text-xs md:text-sm font-light opacity-70">Submit your project details below. Direct response guaranteed within 24 business hours.</p>
-      </div>
-
-      <form id="contact-form" class="space-y-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="space-y-1.5">
-            <label class="text-[10px] font-semibold uppercase tracking-wider opacity-70">Your Name</label>
-            <input type="text" required placeholder="Elena Rostova" class="w-full glass-input px-4 py-3 rounded-xl text-xs" />
-          </div>
-          <div class="space-y-1.5">
-            <label class="text-[10px] font-semibold uppercase tracking-wider opacity-70">Email Address</label>
-            <input type="email" required placeholder="elena@maison.com" class="w-full glass-input px-4 py-3 rounded-xl text-xs" />
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="space-y-1.5">
-            <label class="text-[10px] font-semibold uppercase tracking-wider opacity-70">Commission Category</label>
-            <select class="w-full glass-input px-4 py-3 rounded-xl text-xs bg-neutral-900 text-white dark:bg-neutral-900 dark:text-white">
-              <option value="portrait">Fine Art Portraiture</option>
-              <option value="architecture">Architectural & Spaces</option>
-              <option value="fashion">Fashion & Lookbook Editorial</option>
-              <option value="other">Bespoke Custom Project</option>
-            </select>
-          </div>
-          <div class="space-y-1.5">
-            <label class="text-[10px] font-semibold uppercase tracking-wider opacity-70">Target Date / Location</label>
-            <input type="text" placeholder="Paris / Q3 2026" class="w-full glass-input px-4 py-3 rounded-xl text-xs" />
-          </div>
-        </div>
-
-        <div class="space-y-1.5">
-          <label class="text-[10px] font-semibold uppercase tracking-wider opacity-70">Project Summary</label>
-          <textarea rows="4" required placeholder="Describe mood, deliverables, and expectations..." class="w-full glass-input px-4 py-3 rounded-xl text-xs resize-none"></textarea>
-        </div>
-
-        <button type="submit" class="w-full py-3.5 rounded-xl bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 font-semibold text-xs uppercase tracking-widest hover:opacity-90 transition-all shadow-lg flex items-center justify-center gap-2">
-          <span>Submit Commission Request</span>
-          <i class="fa-solid fa-paper-plane text-[10px]"></i>
-        </button>
-      </form>
-
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="py-12 px-4 border-t border-black/5 dark:border-white/5 text-center relative z-10 text-xs opacity-60">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-2">
-        <span class="font-serif font-bold text-base">AURA STUDIOS</span>
-        <span>— © 2026. All rights reserved.</span>
-      </div>
-      <div class="flex items-center gap-6">
-        <a href="#" class="hover:opacity-100 transition-opacity"><i class="fa-brands fa-instagram text-base"></i></a>
-        <a href="#" class="hover:opacity-100 transition-opacity"><i class="fa-brands fa-behance text-base"></i></a>
-        <a href="#" class="hover:opacity-100 transition-opacity"><i class="fa-brands fa-twitter text-base"></i></a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- FULLSCREEN LIGHTBOX MODAL -->
-  <div id="lightbox-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 md:p-8 bg-black/90 backdrop-blur-2xl transition-all duration-300">
-    
-    <button id="lightbox-close" class="absolute top-6 right-6 w-10 h-10 rounded-full glass-btn text-white flex items-center justify-center z-10 text-base">
-      <i class="fa-solid fa-xmark"></i>
-    </button>
-
-    <button id="lightbox-prev" class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full glass-btn text-white flex items-center justify-center z-10 text-base">
-      <i class="fa-solid fa-chevron-left"></i>
-    </button>
-    <button id="lightbox-next" class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full glass-btn text-white flex items-center justify-center z-10 text-base">
-      <i class="fa-solid fa-chevron-right"></i>
-    </button>
-
-    <div class="w-full max-w-6xl h-full max-h-[85vh] glass-card rounded-3xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 border border-white/10 shadow-2xl">
-      
-      <!-- Image Render Frame -->
-      <div class="lg:col-span-8 bg-black/60 flex items-center justify-center relative p-4 overflow-hidden">
-        <img id="lightbox-img" src="" alt="Fullscreen View" class="max-h-full max-w-full object-contain rounded-xl" />
-      </div>
-
-      <!-- Metadata Panel -->
-      <div class="lg:col-span-4 p-6 md:p-8 flex flex-col justify-between overflow-y-auto bg-neutral-950/80 text-white space-y-6">
-        
-        <div class="space-y-6">
-          <div class="flex items-center justify-between">
-            <span id="lightbox-category" class="text-[9px] font-bold uppercase tracking-widest text-purple-400 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20">Category</span>
-          </div>
-
-          <div>
-            <h3 id="lightbox-title" class="text-2xl font-serif text-white mb-2">Title</h3>
-            <p id="lightbox-desc" class="text-xs font-light text-slate-400 leading-relaxed">Description...</p>
-          </div>
-
-          <!-- EXIF Meta Grid -->
-          <div class="space-y-3 pt-4 border-t border-white/10">
-            <h4 class="text-[10px] uppercase font-semibold text-slate-400 tracking-widest">EXIF Technical Data</h4>
-            <div class="grid grid-cols-2 gap-2.5 text-xs">
-              <div class="glass-btn p-2.5 rounded-xl border-white/10">
-                <span class="text-[9px] text-slate-500 block font-mono uppercase">Body</span>
-                <span id="exif-camera" class="font-medium text-slate-200">Hasselblad</span>
-              </div>
-              <div class="glass-btn p-2.5 rounded-xl border-white/10">
-                <span class="text-[9px] text-slate-500 block font-mono uppercase">Optics</span>
-                <span id="exif-lens" class="font-medium text-slate-200">85mm GM</span>
-              </div>
-              <div class="glass-btn p-2.5 rounded-xl border-white/10">
-                <span class="text-[9px] text-slate-500 block font-mono uppercase">Aperture / ISO</span>
-                <span id="exif-iso" class="font-medium text-slate-200">f/1.4 • 100</span>
-              </div>
-              <div class="glass-btn p-2.5 rounded-xl border-white/10">
-                <span class="text-[9px] text-slate-500 block font-mono uppercase">Shutter</span>
-                <span id="exif-shutter" class="font-medium text-slate-200">1/1000s</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <button id="modal-dl-btn" class="w-full py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
-          <i class="fa-solid fa-download text-xs"></i>
-          <span>Download High-Res Proof</span>
-        </button>
-
-      </div>
-
+<!-- MODAL -->
+<div id="modal">
+  <div class="modal-box">
+    <span class="close" onclick="closeModal()">✖</span>
+    <img id="modalImg">
+    <div class="modal-content">
+      <h2 id="title"></h2>
+      <p id="size"></p>
+      <p id="desc"></p>
+      <a class="btn" href="tel:+919999999999">Call</a>
+      <a class="btn" href="https://wa.me/919999999999">WhatsApp</a>
     </div>
   </div>
+</div>
 
-  <!-- Toast Notification Feedback -->
-  <div id="toast" class="fixed bottom-6 right-6 z-[120] glass-card border border-purple-500/40 px-5 py-4 rounded-2xl shadow-2xl flex items-center gap-3 text-xs">
-    <div class="w-7 h-7 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400">
-      <i class="fa-solid fa-check"></i>
+<script>
+function toggleTheme(){
+  document.body.classList.toggle("dark");
+}
+
+const grid=document.getElementById("grid");
+
+for(let i=1;i<=20;i++){
+  let size=1200+i*50;
+
+  const card=document.createElement("div");
+  card.className="card glass";
+
+  card.innerHTML=`
+    <img src="https://picsum.photos/500/300?random=${i}">
+    <div class="info">
+      <div class="dimension">${size} sq.ft</div>
+      <div>Luxury property in prime location</div>
     </div>
-    <div>
-      <div id="toast-title" class="font-semibold">Request Received</div>
-      <div id="toast-msg" class="opacity-70 text-[11px]">We will reply within 24 hours.</div>
-    </div>
-  </div>
+  `;
 
-  <!-- JavaScript Implementation -->
-  <script>
-    // CURATED HIGH-DEFINITION PHOTOGRAPHY DATASET
-    const galleryItems = [
-      {
-        id: 1,
-        title: "Metropolis Blue Hour",
-        category: "architecture",
-        src: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1000&q=80",
-        camera: "Leica M11",
-        lens: "35mm Summilux",
-        iso: "f/2.0 • ISO 400",
-        shutter: "1/500s",
-        desc: "High contrast urban reflections captured in Tokyo during dusk transitions."
-      },
-      {
-        id: 2,
-        title: "Ethereal Shadows",
-        category: "portrait",
-        src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=80",
-        camera: "Hasselblad X2D",
-        lens: "90mm f/2.5",
-        iso: "f/2.5 • ISO 100",
-        shutter: "1/1000s",
-        desc: "Studio portraiture focusing on soft chiaroscuro lighting and raw expression."
-      },
-      {
-        id: 3,
-        title: "Fjord Silence",
-        category: "landscape",
-        src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80",
-        camera: "Sony A7R V",
-        lens: "24-70mm GM II",
-        iso: "f/8.0 • ISO 100",
-        shutter: "1/250s",
-        desc: "Crisp atmospheric morning light breaking through sea fog in Norway."
-      },
-      {
-        id: 4,
-        title: "Minimalist Geometry",
-        category: "architecture",
-        src: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1000&q=80",
-        camera: "Sony A7R V",
-        lens: "16-35mm GM",
-        iso: "f/5.6 • ISO 100",
-        shutter: "1/400s",
-        desc: "Structural study exploring clean lines, concrete textures, and sky balance."
-      },
-      {
-        id: 5,
-        title: "Maison Noir Campaign",
-        category: "editorial",
-        src: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1000&q=80",
-        camera: "Canon R5",
-        lens: "50mm f/1.2 L",
-        iso: "f/1.8 • ISO 200",
-        shutter: "1/2000s",
-        desc: "Outdoor fashion lookbook commissioned for Paris Autumn Fashion Week."
-      },
-      {
-        id: 6,
-        title: "Alpine Ridge",
-        category: "landscape",
-        src: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1000&q=80",
-        camera: "Hasselblad X2D",
-        lens: "38mm f/2.5",
-        iso: "f/11 • ISO 64",
-        shutter: "1/125s",
-        desc: "High altitude panoramic photography of the Swiss Alps in early winter."
-      }
-    ];
+  card.onclick=()=>openModal(i,size);
+  grid.appendChild(card);
+}
 
-    let currentPhotoIndex = 0;
-    let filteredItems = [...galleryItems];
+function openModal(id,size){
+  document.getElementById("modal").style.display="flex";
+  document.getElementById("modalImg").src=`https://picsum.photos/800/500?random=${id}`;
+  document.getElementById("title").innerText="Property #"+id;
+  document.getElementById("size").innerText=size+" sq.ft";
+  document.getElementById("desc").innerText="Premium property with excellent investment potential.";
+}
 
-    // THEME SWITCHING SYSTEM
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const htmlEl = document.documentElement;
+function closeModal(){
+  document.getElementById("modal").style.display="none";
+}
+</script>
 
-    themeToggleBtn.addEventListener('click', () => {
-      htmlEl.classList.toggle('dark');
-      const isDark = htmlEl.classList.contains('dark');
-      localStorage.setItem('aura-theme', isDark ? 'dark' : 'light');
-    });
-
-    // Check system or cached preference
-    if (localStorage.getItem('aura-theme') === 'light') {
-      htmlEl.classList.remove('dark');
-    }
-
-    // GALLERY MASONRY RENDER
-    function renderGallery(items) {
-      const grid = document.getElementById('gallery-grid');
-      grid.innerHTML = '';
-
-      items.forEach((item, index) => {
-        const card = document.createElement('div');
-        card.className = 'gallery-item group relative glass-card rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 hover:-translate-y-2 border';
-        card.innerHTML = `
-          <div class="relative aspect-auto overflow-hidden bg-neutral-900">
-            <img 
-              src="${item.src}" 
-              alt="${item.title}" 
-              loading="lazy"
-              onerror="this.src='https://placehold.co/800x1000/1e1e2d/ffffff?text=${encodeURIComponent(item.title)}';"
-              class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-neutral-950/90 via-neutral-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 text-white">
-              <span class="text-[9px] font-bold uppercase tracking-widest text-purple-300 font-mono">${item.category}</span>
-              <h4 class="text-base font-serif font-semibold">${item.title}</h4>
-              <div class="flex items-center justify-between text-[10px] opacity-75 font-mono mt-2 pt-2 border-t border-white/10">
-                <span>${item.camera}</span>
-                <span>${item.iso}</span>
-              </div>
-            </div>
-          </div>
-        `;
-
-        card.addEventListener('click', () => openLightbox(index));
-        grid.appendChild(card);
-      });
-    }
-
-    // LIGHTBOX CONTROLS
-    const modal = document.getElementById('lightbox-modal');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const lightboxTitle = document.getElementById('lightbox-title');
-    const lightboxCategory = document.getElementById('lightbox-category');
-    const lightboxDesc = document.getElementById('lightbox-desc');
-    const exifCamera = document.getElementById('exif-camera');
-    const exifLens = document.getElementById('exif-lens');
-    const exifIso = document.getElementById('exif-iso');
-    const exifShutter = document.getElementById('exif-shutter');
-
-    function openLightbox(index) {
-      currentPhotoIndex = index;
-      updateLightboxContent();
-      modal.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function updateLightboxContent() {
-      const item = filteredItems[currentPhotoIndex];
-      lightboxImg.src = item.src;
-      lightboxTitle.textContent = item.title;
-      lightboxCategory.textContent = item.category;
-      lightboxDesc.textContent = item.desc;
-      exifCamera.textContent = item.camera;
-      exifLens.textContent = item.lens;
-      exifIso.textContent = item.iso;
-      exifShutter.textContent = item.shutter;
-    }
-
-    function closeLightbox() {
-      modal.classList.add('hidden');
-      document.body.style.overflow = '';
-    }
-
-    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
-    document.getElementById('lightbox-prev').addEventListener('click', () => {
-      currentPhotoIndex = (currentPhotoIndex - 1 + filteredItems.length) % filteredItems.length;
-      updateLightboxContent();
-    });
-    document.getElementById('lightbox-next').addEventListener('click', () => {
-      currentPhotoIndex = (currentPhotoIndex + 1) % filteredItems.length;
-      updateLightboxContent();
-    });
-
-    window.addEventListener('keydown', (e) => {
-      if (!modal.classList.contains('hidden')) {
-        if (e.key === 'Escape') closeLightbox();
-        if (e.key === 'ArrowLeft') {
-          currentPhotoIndex = (currentPhotoIndex - 1 + filteredItems.length) % filteredItems.length;
-          updateLightboxContent();
-        }
-        if (e.key === 'ArrowRight') {
-          currentPhotoIndex = (currentPhotoIndex + 1) % filteredItems.length;
-          updateLightboxContent();
-        }
-      }
-    });
-
-    // FILTER TAB SWITCHING
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active', 'opacity-100'));
-        filterBtns.forEach(b => b.classList.add('opacity-70'));
-        btn.classList.add('active', 'opacity-100');
-
-        const cat = btn.getAttribute('data-filter');
-        filteredItems = cat === 'all' ? [...galleryItems] : galleryItems.filter(i => i.category === cat);
-        renderGallery(filteredItems);
-      });
-    });
-
-    // BEFORE / AFTER SLIDER LOGIC
-    const sliderContainer = document.getElementById('before-after-container');
-    const beforeWrap = document.getElementById('before-image-wrap');
-    const beforeImg = document.getElementById('before-img-element');
-    const sliderHandle = document.getElementById('slider-handle');
-
-    let isSliding = false;
-
-    function setSliderPosition(x) {
-      const rect = sliderContainer.getBoundingClientRect();
-      let offsetX = x - rect.left;
-      if (offsetX < 0) offsetX = 0;
-      if (offsetX > rect.width) offsetX = rect.width;
-
-      const percentage = (offsetX / rect.width) * 100;
-      beforeWrap.style.width = `${percentage}%`;
-      sliderHandle.style.left = `${percentage}%`;
-      beforeImg.style.width = `${rect.width}px`;
-    }
-
-    sliderContainer.addEventListener('mousedown', (e) => {
-      isSliding = true;
-      setSliderPosition(e.clientX);
-    });
-
-    window.addEventListener('mousemove', (e) => {
-      if (!isSliding) return;
-      setSliderPosition(e.clientX);
-    });
-
-    window.addEventListener('mouseup', () => { isSliding = false; });
-
-    // Touch Support for Slider
-    sliderContainer.addEventListener('touchstart', (e) => {
-      isSliding = true;
-      setSliderPosition(e.touches[0].clientX);
-    });
-
-    window.addEventListener('touchmove', (e) => {
-      if (!isSliding) return;
-      setSliderPosition(e.touches[0].clientX);
-    });
-
-    window.addEventListener('touchend', () => { isSliding = false; });
-
-    // SCROLL REVEAL OBSERVER
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('active');
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-    // CURSOR LIGHT TRACKER
-    const cursorLight = document.getElementById('cursor-light');
-    window.addEventListener('mousemove', (e) => {
-      cursorLight.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-    });
-
-    // MOBILE MENU
-    const mobileBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-    document.querySelectorAll('.mobile-link').forEach(link => {
-      link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
-    });
-
-    // FORM & TOAST
-    const contactForm = document.getElementById('contact-form');
-    const toast = document.getElementById('toast');
-
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      toast.classList.add('show');
-      contactForm.reset();
-      setTimeout(() => toast.classList.remove('show'), 4000);
-    });
-
-    document.getElementById('modal-dl-btn').addEventListener('click', () => {
-      const toastTitle = document.getElementById('toast-title');
-      const toastMsg = document.getElementById('toast-msg');
-      toastTitle.textContent = "Proof Download Started";
-      toastMsg.textContent = "High-resolution watermarked archive generated.";
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 3000);
-    });
-
-    // INITIALIZATION
-    renderGallery(galleryItems);
-  </script>
 </body>
 </html>
+
+
+
