@@ -1,964 +1,1030 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#050615">
-  <meta name="description" content="Dillu Captures — cinematic photography portfolio.">
-  <title>Dillu Captures | Photography Portfolio</title>
-
+  <title>AURA STUDIOS — Fine Art & Commercial Photography</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Cormorant Garamond & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            sans: ['"Inter"', 'sans-serif'],
+          },
+          colors: {
+            aura: {
+              gold: '#d4af37',
+              accent: '#8b5cf6',
+              darkBg: '#090a0f',
+              lightBg: '#f8f9fc',
+            }
+          },
+          animation: {
+            'ambient-pulse': 'ambientPulse 14s ease-in-out infinite alternate',
+            'float-subtle': 'floatSubtle 6s ease-in-out infinite',
+          },
+          keyframes: {
+            ambientPulse: {
+              '0%': { transform: 'translate(0, 0) scale(1)' },
+              '50%': { transform: 'translate(30px, -40px) scale(1.1)' },
+              '100%': { transform: 'translate(-20px, 20px) scale(0.95)' },
+            },
+            floatSubtle: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
 
   <style>
-    :root{
-      --bg:#050615;
-      --text:#f8fafc;
-      --muted:rgba(255,255,255,.58);
-      --line:rgba(255,255,255,.11);
-      --glass:rgba(255,255,255,.055);
-      --glass-hover:rgba(255,255,255,.10);
-      --indigo:#6366f1;
-      --violet:#8b5cf6;
-      --blue:#2563eb;
+    /* CSS Variables & Custom Theme Transitions */
+    :root {
+      --bg-color: #090a0f;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --glass-bg: rgba(18, 20, 29, 0.55);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --glass-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+      --pill-bg: rgba(255, 255, 255, 0.05);
+      --input-bg: rgba(255, 255, 255, 0.03);
+      --blob-1: rgba(124, 58, 237, 0.28);
+      --blob-2: rgba(14, 165, 233, 0.22);
+      --blob-3: rgba(212, 175, 55, 0.15);
     }
 
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{
-      min-width:320px;
-      color:var(--text);
-      background:
-        radial-gradient(circle at 10% 10%,rgba(79,70,229,.22),transparent 30%),
-        radial-gradient(circle at 90% 20%,rgba(37,99,235,.17),transparent 28%),
-        radial-gradient(circle at 45% 85%,rgba(124,58,237,.16),transparent 35%),
-        var(--bg);
-      font-family:Inter,Arial,sans-serif;
-      overflow-x:hidden;
-    }
-    body.modal-open{overflow:hidden}
-    a{text-decoration:none;color:inherit}
-    button{font:inherit;color:inherit}
-    img{max-width:100%;display:block}
-
-    /* Animated fluid background */
-    .ambient{
-      position:fixed;
-      z-index:-5;
-      border-radius:50%;
-      filter:blur(85px);
-      pointer-events:none;
-      opacity:.45;
-      animation:drift 15s ease-in-out infinite alternate;
-    }
-    .ambient.one{width:480px;height:480px;left:-180px;top:80px;background:#4338ca}
-    .ambient.two{width:550px;height:550px;right:-220px;top:25%;background:#1d4ed8;animation-delay:-5s}
-    .ambient.three{width:600px;height:600px;left:20%;bottom:-300px;background:#7c3aed;animation-delay:-9s}
-
-    .noise{
-      position:fixed;
-      inset:0;
-      z-index:60;
-      pointer-events:none;
-      opacity:.025;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    html:not(.dark) {
+      --bg-color: #f8f9fc;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --glass-bg: rgba(255, 255, 255, 0.75);
+      --glass-border: rgba(0, 0, 0, 0.08);
+      --glass-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+      --pill-bg: rgba(0, 0, 0, 0.04);
+      --input-bg: rgba(0, 0, 0, 0.02);
+      --blob-1: rgba(167, 139, 250, 0.25);
+      --blob-2: rgba(125, 211, 252, 0.25);
+      --blob-3: rgba(253, 224, 71, 0.25);
     }
 
-    @keyframes drift{
-      from{transform:translate(-5%,-3%) scale(1)}
-      to{transform:translate(8%,5%) scale(1.15)}
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      transition: background-color 0.5s ease, color 0.5s ease;
     }
 
-    /* Glass system */
-    .glass{
-      background:var(--glass);
-      border:1px solid var(--line);
-      backdrop-filter:blur(30px) saturate(140%);
-      -webkit-backdrop-filter:blur(30px) saturate(140%);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.08),
-        inset 0 -1px 0 rgba(255,255,255,.025),
-        0 25px 80px rgba(0,0,0,.28);
+    /* Ambient Dynamic Background Mesh */
+    .bg-mesh {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -2;
+      pointer-events: none;
+      overflow: hidden;
     }
 
-    .blob{
-      border-radius:38% 62% 55% 45% / 48% 38% 62% 52%;
-      animation:blobMorph 14s ease-in-out infinite;
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      transition: background 0.8s ease;
     }
 
-    @keyframes blobMorph{
-      0%,100%{border-radius:38% 62% 55% 45% / 48% 38% 62% 52%}
-      25%{border-radius:58% 42% 48% 52% / 34% 57% 43% 66%}
-      50%{border-radius:46% 54% 34% 66% / 61% 43% 57% 39%}
-      75%{border-radius:65% 35% 58% 42% / 45% 68% 32% 55%}
+    .blob-1 {
+      top: -10%;
+      left: -10%;
+      width: 55vw;
+      height: 55vw;
+      background: var(--blob-1);
     }
 
-    /* Navigation */
-    .nav-wrap{
-      position:sticky;
-      top:0;
-      z-index:40;
-      padding:16px 20px 0;
-    }
-    nav{
-      max-width:1180px;
-      margin:auto;
-      min-height:64px;
-      padding:10px 14px 10px 16px;
-      border-radius:24px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-    }
-    .brand{display:flex;align-items:center;gap:12px}
-    .brand-icon{
-      width:42px;height:42px;
-      display:grid;place-items:center;
-      border-radius:16px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.07);
-      font-size:19px;
-    }
-    .brand-name{
-      font-weight:800;
-      font-size:13px;
-      letter-spacing:.16em;
-    }
-    .brand-name span{color:#a5b4fc}
-    .nav-links{display:flex;align-items:center;gap:4px}
-    .nav-links a,.nav-cta{
-      padding:11px 18px;
-      border-radius:999px;
-      font-size:13px;
-      color:rgba(255,255,255,.62);
-      transition:.35s ease;
-    }
-    .nav-links a:hover{background:rgba(255,255,255,.07);color:#fff}
-    .nav-cta{
-      color:#fff;
-      margin-left:6px;
-      background:rgba(255,255,255,.10);
-      border:1px solid var(--line);
-    }
-    .nav-cta:hover{background:rgba(255,255,255,.17)}
-    .menu-btn{
-      display:none;
-      width:42px;height:42px;
-      border-radius:50%;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.07);
-      cursor:pointer;
+    .blob-2 {
+      bottom: -10%;
+      right: -10%;
+      width: 60vw;
+      height: 60vw;
+      background: var(--blob-2);
     }
 
-    /* General */
-    .container{
-      width:min(1180px,calc(100% - 40px));
-      margin:auto;
-    }
-    section{scroll-margin-top:100px}
-
-    /* Hero */
-    .hero{
-      min-height:calc(100vh - 80px);
-      display:grid;
-      grid-template-columns:1.08fr .92fr;
-      align-items:center;
-      gap:70px;
-      padding:80px 0 100px;
-    }
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:9px;
-      padding:9px 15px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.055);
-      backdrop-filter:blur(22px);
-      color:rgba(224,231,255,.78);
-      font-size:10px;
-      font-weight:700;
-      letter-spacing:.2em;
-    }
-    .dot{
-      width:7px;height:7px;border-radius:50%;
-      background:#a5b4fc;
-      box-shadow:0 0 15px #818cf8;
-    }
-    h1,h2,h3{font-family:"Playfair Display",serif}
-    .hero h1{
-      margin-top:28px;
-      font-size:clamp(56px,8vw,108px);
-      line-height:.93;
-      letter-spacing:-.055em;
-      font-weight:700;
-    }
-    .gradient-text{
-      background:linear-gradient(100deg,#fff,#c7d2fe,#c4b5fd);
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-    }
-    .hero-copy{
-      max-width:600px;
-      margin-top:28px;
-      color:var(--muted);
-      font-size:17px;
-      line-height:1.8;
-    }
-    .hero-actions{
-      display:flex;
-      align-items:center;
-      gap:18px;
-      margin-top:34px;
-      flex-wrap:wrap;
-    }
-    .primary-btn{
-      display:inline-flex;
-      align-items:center;
-      gap:9px;
-      padding:15px 23px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.10);
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.12);
-      font-size:13px;
-      font-weight:700;
-      transition:.4s ease;
-    }
-    .primary-btn:hover{background:rgba(255,255,255,.17);transform:translateY(-2px)}
-    .text-btn{
-      padding:12px 4px;
-      color:rgba(255,255,255,.55);
-      font-size:13px;
-      transition:.3s;
-    }
-    .text-btn:hover{color:#fff}
-
-    .hero-visual{position:relative;max-width:530px;margin:auto;width:100%}
-    .hero-glow{
-      position:absolute;
-      inset:-45px;
-      border-radius:50%;
-      background:rgba(99,102,241,.16);
-      filter:blur(60px);
-    }
-    .hero-frame{
-      position:relative;
-      padding:8px;
-      overflow:hidden;
-      aspect-ratio:4/5;
-    }
-    .hero-frame img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      border-radius:inherit;
-    }
-    .image-shade{
-      position:absolute;
-      inset:8px;
-      border-radius:inherit;
-      background:linear-gradient(to top,rgba(3,4,15,.72),transparent 55%,rgba(255,255,255,.08));
-      pointer-events:none;
-    }
-    .featured{
-      position:absolute;
-      left:30px;right:30px;bottom:28px;
-      display:flex;
-      align-items:end;
-      justify-content:space-between;
-    }
-    .featured small{
-      color:rgba(255,255,255,.48);
-      font-size:9px;
-      letter-spacing:.2em;
-    }
-    .featured strong{display:block;margin-top:5px;font-family:"Playfair Display";font-size:20px}
-    .round-arrow{
-      width:44px;height:44px;
-      display:grid;place-items:center;
-      border-radius:50%;
-      border:1px solid rgba(255,255,255,.15);
-      background:rgba(0,0,0,.16);
-      backdrop-filter:blur(18px);
+    .blob-3 {
+      top: 35%;
+      left: 30%;
+      width: 40vw;
+      height: 40vw;
+      background: var(--blob-3);
     }
 
-    /* Section headings */
-    .section{padding:100px 0}
-    .section-head{
-      display:flex;
-      align-items:end;
-      justify-content:space-between;
-      gap:30px;
-      margin-bottom:38px;
-    }
-    .label{
-      color:#a5b4fc;
-      font-size:10px;
-      font-weight:700;
-      letter-spacing:.22em;
-    }
-    .section h2{
-      margin-top:10px;
-      font-size:clamp(40px,5vw,64px);
-      line-height:1;
-      letter-spacing:-.045em;
-    }
-    .muted-title{color:rgba(255,255,255,.38)}
-
-    /* Filters */
-    .filters{
-      display:flex;
-      gap:4px;
-      padding:6px;
-      border-radius:999px;
-      max-width:100%;
-      overflow:auto;
-      scrollbar-width:none;
-    }
-    .filters::-webkit-scrollbar{display:none}
-    .filter{
-      border:0;
-      background:transparent;
-      padding:10px 16px;
-      border-radius:999px;
-      color:rgba(255,255,255,.42);
-      cursor:pointer;
-      white-space:nowrap;
-      font-size:11px;
-      transition:.3s;
-    }
-    .filter:hover{color:#fff;background:rgba(255,255,255,.055)}
-    .filter.active{
-      color:#fff;
-      background:rgba(255,255,255,.12);
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+    /* Glassmorphism Styling */
+    .glass-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow);
+      transition: background 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease, transform 0.3s ease;
     }
 
-    /* Masonry */
-    .masonry{
-      column-count:3;
-      column-gap:20px;
-    }
-    .gallery-item{
-      break-inside:avoid;
-      margin-bottom:20px;
-      cursor:zoom-in;
-      animation:fadeUp .65s both;
-    }
-    @keyframes fadeUp{
-      from{opacity:0;transform:translateY(20px)}
-      to{opacity:1;transform:translateY(0)}
-    }
-    .gallery-card{
-      position:relative;
-      overflow:hidden;
-      padding:6px;
-      border-radius:34% 66% 55% 45% / 52% 42% 58% 48%;
-      background:rgba(255,255,255,.055);
-      border:1px solid rgba(255,255,255,.10);
-      backdrop-filter:blur(26px);
-      transition:.7s cubic-bezier(.22,1,.36,1);
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 25px 70px rgba(0,0,0,.25);
-    }
-    .gallery-card:hover{
-      transform:translateY(-6px);
-      background:rgba(255,255,255,.095);
-      border-color:rgba(255,255,255,.20);
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.13),0 35px 100px rgba(0,0,0,.4),0 0 55px rgba(99,102,241,.11);
-      border-radius:42% 58% 46% 54% / 44% 55% 45% 56%;
-    }
-    .gallery-card img{
-      width:100%;
-      height:auto;
-      border-radius:inherit;
-      transition:transform 1s cubic-bezier(.22,1,.36,1),filter .7s;
-    }
-    .gallery-card:hover img{transform:scale(1.045);filter:saturate(1.08)}
-    .gallery-info{
-      position:absolute;
-      left:13px;right:13px;bottom:13px;
-      display:flex;
-      justify-content:space-between;
-      align-items:end;
-      gap:12px;
-      padding:12px 14px;
-      border-radius:17px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(0,0,0,.23);
-      backdrop-filter:blur(22px);
-      opacity:0;
-      transform:translateY(8px);
-      transition:.45s;
-    }
-    .gallery-card:hover .gallery-info{opacity:1;transform:none}
-    .gallery-title{font-size:13px;font-weight:600}
-    .gallery-meta{
-      margin-top:4px;
-      font-size:8px;
-      letter-spacing:.16em;
-      text-transform:uppercase;
-      color:rgba(255,255,255,.45);
+    .glass-pill {
+      background: var(--glass-bg);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow);
+      transition: all 0.4s ease;
     }
 
-    /* About */
-    .about-grid{
-      display:grid;
-      grid-template-columns:.9fr 1.1fr;
-      gap:50px;
-      align-items:center;
-    }
-    .portrait-wrap{
-      position:relative;
-      max-width:500px;
-      margin:auto;
-      animation:float 7s ease-in-out infinite;
-    }
-    @keyframes float{
-      0%,100%{transform:translateY(0) rotate(0)}
-      50%{transform:translateY(-11px) rotate(.8deg)}
-    }
-    .portrait-glow{
-      position:absolute;
-      inset:-45px;
-      border-radius:50%;
-      background:rgba(139,92,246,.14);
-      filter:blur(55px);
-    }
-    .portrait-frame{
-      position:relative;
-      aspect-ratio:4/5;
-      padding:8px;
-      overflow:hidden;
-    }
-    .portrait-frame img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      border-radius:inherit;
-    }
-    .portrait-tag{
-      position:absolute;
-      top:30px;left:30px;
-      padding:10px 15px;
-      border-radius:999px;
-      background:rgba(0,0,0,.2);
-      border:1px solid rgba(255,255,255,.10);
-      backdrop-filter:blur(20px);
-      font-size:9px;
-      font-weight:700;
-      letter-spacing:.18em;
-    }
-    .about-card{
-      padding:45px;
-      border-radius:32px;
-    }
-    .about-card h2{
-      margin-top:12px;
-      font-size:clamp(40px,4.5vw,58px);
-      line-height:1.05;
-      letter-spacing:-.045em;
-    }
-    .about-card h2 span{
-      background:linear-gradient(90deg,#c7d2fe,#c4b5fd,#93c5fd);
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-    }
-    .about-card p{
-      max-width:700px;
-      margin-top:24px;
-      color:var(--muted);
-      font-size:15px;
-      line-height:1.9;
-    }
-    .skills{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:9px;
-      margin-top:28px;
-    }
-    .skill{
-      text-align:center;
-      padding:12px 8px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.09);
-      background:rgba(255,255,255,.045);
-      color:rgba(255,255,255,.62);
-      font-size:10px;
-    }
-    .socials{display:flex;gap:10px;margin-top:27px}
-    .social{
-      width:48px;height:48px;
-      display:grid;place-items:center;
-      border-radius:50%;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.055);
-      transition:.4s;
-    }
-    .social:hover{
-      background:rgba(129,140,248,.18);
-      border-color:rgba(165,180,252,.30);
-      transform:translateY(-3px);
-      box-shadow:0 0 30px rgba(99,102,241,.18);
-    }
-    .social svg{width:17px;height:17px}
-
-    /* Contact */
-    .contact-card{
-      position:relative;
-      overflow:hidden;
-      padding:60px;
-      border-radius:34px;
-    }
-    .contact-glow{
-      position:absolute;
-      width:320px;height:320px;
-      right:-100px;top:-140px;
-      border-radius:50%;
-      background:rgba(99,102,241,.16);
-      filter:blur(55px);
-    }
-    .contact-content{position:relative}
-    .contact-card h2{
-      max-width:760px;
-      margin-top:13px;
-      font-size:clamp(42px,5vw,65px);
-      line-height:1;
-      letter-spacing:-.045em;
-    }
-    .contact-card h2 span{color:rgba(255,255,255,.36)}
-    .contact-row{
-      display:flex;
-      align-items:end;
-      justify-content:space-between;
-      gap:30px;
-    }
-    footer{
-      display:flex;
-      justify-content:space-between;
-      gap:20px;
-      padding:30px 5px;
-      color:rgba(255,255,255,.3);
-      font-size:10px;
+    .glass-btn {
+      background: var(--pill-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* Lightbox */
-    .lightbox{
-      position:fixed;
-      inset:0;
-      z-index:100;
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:20px;
-      background:rgba(2,3,12,.76);
-      backdrop-filter:blur(30px) saturate(120%);
-      -webkit-backdrop-filter:blur(30px);
-    }
-    .lightbox.show{display:flex;animation:modalIn .35s ease}
-    @keyframes modalIn{from{opacity:0}to{opacity:1}}
-    .lightbox-inner{
-      position:relative;
-      max-width:1150px;
-      max-height:92vh;
-      padding:8px;
-      border-radius:30px;
-    }
-    .lightbox-inner img{
-      max-width:calc(100vw - 60px);
-      max-height:84vh;
-      width:auto;
-      height:auto;
-      object-fit:contain;
-      border-radius:22px;
-    }
-    .close{
-      position:absolute;
-      right:18px;top:18px;
-      width:44px;height:44px;
-      display:grid;place-items:center;
-      border-radius:50%;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(0,0,0,.25);
-      backdrop-filter:blur(20px);
-      cursor:pointer;
-      z-index:2;
-      font-size:20px;
-    }
-    .lightbox-caption{
-      position:absolute;
-      left:24px;bottom:24px;
-      padding:12px 16px;
-      border-radius:17px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(0,0,0,.27);
-      backdrop-filter:blur(20px);
-    }
-    .lightbox-caption strong{font-family:"Playfair Display";font-size:18px}
-    .lightbox-caption small{
-      display:block;
-      margin-top:4px;
-      color:rgba(255,255,255,.45);
-      font-size:8px;
-      letter-spacing:.16em;
-      text-transform:uppercase;
+    .glass-btn:hover {
+      border-color: var(--text-main);
+      transform: translateY(-2px);
     }
 
-    /* Mobile */
-    @media(max-width:900px){
-      .nav-links{display:none}
-      .menu-btn{display:block}
-      .hero{
-        grid-template-columns:1fr;
-        gap:55px;
-        padding-top:70px;
-      }
-      .hero-visual{max-width:520px}
-      .masonry{column-count:2}
-      .about-grid{grid-template-columns:1fr}
-      .about-card{padding:32px}
+    .glass-input {
+      background: var(--input-bg);
+      border: 1px solid var(--glass-border);
+      color: var(--text-main);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
     }
 
-    @media(max-width:640px){
-      .container{width:min(100% - 28px,1180px)}
-      .nav-wrap{padding:10px 12px 0}
-      nav{border-radius:19px}
-      .brand-name{font-size:11px}
-      .hero{min-height:auto;padding:65px 0 80px}
-      .hero h1{font-size:clamp(52px,16vw,76px)}
-      .hero-copy{font-size:15px;line-height:1.7}
-      .section{padding:75px 0}
-      .section-head{align-items:start;flex-direction:column}
-      .filters{width:100%}
-      .masonry{column-count:1}
-      .gallery-item{margin-bottom:16px}
-      .about-card{padding:25px 20px;border-radius:25px}
-      .skills{grid-template-columns:repeat(2,1fr)}
-      .contact-card{padding:35px 22px}
-      .contact-row{align-items:start;flex-direction:column}
-      footer{flex-direction:column}
-      .lightbox{padding:10px}
-      .lightbox-inner img{max-width:calc(100vw - 28px);max-height:78vh}
-      .lightbox-caption{left:15px;bottom:15px}
+    .glass-input:focus {
+      outline: none;
+      border-color: #8b5cf6;
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+    }
+
+    /* Subtle Cursor Glow */
+    #cursor-light {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 350px;
+      height: 350px;
+      margin-left: -175px;
+      margin-top: -175px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.07) 0%, rgba(255,255,255,0) 70%);
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.08s ease-out;
+      mix-blend-mode: screen;
+    }
+
+    /* Smooth Scroll Reveals */
+    .reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Masonry & Item Animations */
+    .gallery-item {
+      break-inside: avoid;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-color);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(150, 150, 150, 0.25);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(150, 150, 150, 0.45);
+    }
+
+    /* Toast Animation */
+    #toast {
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #toast.show {
+      transform: translateY(0);
+      opacity: 1;
     }
   </style>
 </head>
+<body class="relative min-h-screen antialiased selection:bg-purple-500 selection:text-white">
 
-<body>
-  <div class="ambient one"></div>
-  <div class="ambient two"></div>
-  <div class="ambient three"></div>
-  <div class="noise"></div>
+  <!-- Cursor Light Follower -->
+  <div id="cursor-light"></div>
 
-  <!-- NAVIGATION -->
-  <div class="nav-wrap">
-    <nav class="glass">
-      <a href="#" class="brand">
-        <div class="brand-icon">◈</div>
-        <div class="brand-name">DILLU <span>CAPTURES</span></div>
+  <!-- Ambient Animated Mesh Background -->
+  <div class="bg-mesh">
+    <div class="blob blob-1 animate-ambient-pulse"></div>
+    <div class="blob blob-2 animate-ambient-pulse" style="animation-delay: -5s;"></div>
+    <div class="blob blob-3 animate-ambient-pulse" style="animation-delay: -10s;"></div>
+  </div>
+
+  <!-- Floating Navigation Bar -->
+  <header class="fixed top-5 inset-x-0 z-50 flex justify-center px-4 transition-all duration-300" id="main-header">
+    <nav class="glass-pill rounded-full px-6 py-3 flex items-center justify-between w-full max-w-6xl gap-4">
+      
+      <!-- Logo -->
+      <a href="#home" class="flex items-center gap-2 group">
+        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-purple-500 via-indigo-400 to-amber-300 p-[1px] flex items-center justify-center">
+          <div class="w-full h-full bg-neutral-950 dark:bg-neutral-950 rounded-full flex items-center justify-center group-hover:bg-transparent transition-all duration-300">
+            <span class="font-serif italic font-bold text-xs text-white">A</span>
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-serif font-bold text-lg tracking-widest text-current leading-none">AURA</span>
+          <span class="text-[8px] tracking-[0.3em] opacity-60 uppercase font-sans font-semibold">Studios</span>
+        </div>
       </a>
 
-      <div class="nav-links">
-        <a href="#work">Work</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <a href="#contact" class="nav-cta">Book a shoot</a>
+      <!-- Desktop Navigation Links -->
+      <div class="hidden md:flex items-center gap-8 text-xs uppercase tracking-widest font-medium opacity-80">
+        <a href="#home" class="hover:opacity-100 transition-opacity active-link">Home</a>
+        <a href="#gallery" class="hover:opacity-100 transition-opacity">Gallery</a>
+        <a href="#showcase" class="hover:opacity-100 transition-opacity">Showcase</a>
+        <a href="#about" class="hover:opacity-100 transition-opacity">About</a>
+        <a href="#services" class="hover:opacity-100 transition-opacity">Services</a>
+        <a href="#contact" class="hover:opacity-100 transition-opacity">Contact</a>
       </div>
 
-      <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+      <!-- Theme Switcher & Actions -->
+      <div class="flex items-center gap-3">
+        
+        <!-- Theme Switch Toggle Button -->
+        <button id="theme-toggle" aria-label="Toggle Theme" class="w-9 h-9 rounded-full glass-btn flex items-center justify-center text-sm transition-transform active:scale-95">
+          <i class="fa-solid fa-moon text-purple-400 dark:hidden"></i>
+          <i class="fa-solid fa-sun text-amber-300 hidden dark:block"></i>
+        </button>
+
+        <!-- CTA Button -->
+        <a href="#contact" class="hidden sm:flex glass-btn text-[11px] uppercase tracking-wider font-semibold px-4 py-2 rounded-full items-center gap-2">
+          <span>Inquire</span>
+          <i class="fa-solid fa-arrow-right text-[9px] opacity-70"></i>
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-btn" class="md:hidden opacity-80 hover:opacity-100 p-2">
+          <i class="fa-solid fa-bars text-base"></i>
+        </button>
+      </div>
     </nav>
 
-    <div class="glass" id="mobileMenu" style="display:none;max-width:1180px;margin:8px auto 0;border-radius:20px;padding:8px">
-      <a href="#work" class="mobile-link">Work</a>
-      <a href="#about" class="mobile-link">About</a>
-      <a href="#contact" class="mobile-link">Contact</a>
+    <!-- Mobile Dropdown Navigation -->
+    <div id="mobile-menu" class="hidden absolute top-16 inset-x-4 glass-card rounded-2xl p-6 flex flex-col gap-4 text-center text-sm font-medium border md:hidden shadow-2xl">
+      <a href="#home" class="mobile-link py-2 border-b border-black/5 dark:border-white/5">Home</a>
+      <a href="#gallery" class="mobile-link py-2 border-b border-black/5 dark:border-white/5">Gallery</a>
+      <a href="#showcase" class="mobile-link py-2 border-b border-black/5 dark:border-white/5">Showcase</a>
+      <a href="#about" class="mobile-link py-2 border-b border-black/5 dark:border-white/5">About</a>
+      <a href="#services" class="mobile-link py-2 border-b border-black/5 dark:border-white/5">Services</a>
+      <a href="#contact" class="mobile-link py-2">Contact</a>
     </div>
-  </div>
+  </header>
 
-  <main>
-    <!-- HERO -->
-    <section class="container hero">
-      <div class="hero-copy-area">
-        <div class="eyebrow">
-          <span class="dot"></span>
-          VISUAL STORYTELLING · HYDERABAD
+  <!-- Hero Section -->
+  <section id="home" class="relative min-h-screen flex items-center justify-center pt-28 pb-16 px-4 md:px-8">
+    <div class="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Hero Header Content -->
+      <div class="lg:col-span-7 space-y-8 z-10 text-left">
+        
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-card border text-[11px] font-medium tracking-wider uppercase opacity-80">
+          <span class="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse"></span>
+          <span>Fine Art & Architectural Editorial</span>
         </div>
 
-        <h1>
-          Moments,<br>
-          <span class="gradient-text">made fluid.</span>
+        <h1 class="text-5xl sm:text-6xl md:text-7xl font-serif font-normal leading-[1.05] tracking-tight">
+          Capturing Moments in <span class="italic font-light text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-indigo-400 to-amber-400">Pure Light</span> & Shadows.
         </h1>
 
-        <p class="hero-copy">
-          Cinematic photography shaped around honest emotion, considered light,
-          and the little details that make a frame feel alive.
+        <p class="text-sm md:text-base font-light leading-relaxed max-w-xl opacity-80">
+          Minimalist photographic art engineered with precision. Documenting high-fashion editorial, quiet architectural forms, and raw human emotion across the world.
         </p>
 
-        <div class="hero-actions">
-          <a href="#work" class="primary-btn">Explore the work ↓</a>
-          <a href="#about" class="text-btn">Meet the photographer →</a>
+        <!-- CTA Action Buttons -->
+        <div class="flex flex-wrap items-center gap-4 pt-2">
+          <a href="#gallery" class="px-7 py-3.5 rounded-full bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 font-medium text-xs uppercase tracking-widest hover:opacity-90 transition-all shadow-lg flex items-center gap-3">
+            <span>Explore Portfolio</span>
+            <i class="fa-solid fa-arrow-down text-[10px]"></i>
+          </a>
+          <a href="#contact" class="glass-btn px-6 py-3.5 rounded-full text-xs font-medium uppercase tracking-widest flex items-center gap-2">
+            <span>Book Commission</span>
+          </a>
         </div>
+
+        <!-- Subtle Stats -->
+        <div class="grid grid-cols-3 gap-6 pt-8 border-t border-black/10 dark:border-white/10 max-w-md">
+          <div>
+            <div class="text-2xl font-serif font-bold">14+</div>
+            <div class="text-[10px] uppercase tracking-wider opacity-60">Years Experience</div>
+          </div>
+          <div>
+            <div class="text-2xl font-serif font-bold">500+</div>
+            <div class="text-[10px] uppercase tracking-wider opacity-60">Projects Mastered</div>
+          </div>
+          <div>
+            <div class="text-2xl font-serif font-bold">22</div>
+            <div class="text-[10px] uppercase tracking-wider opacity-60">Global Awards</div>
+          </div>
+        </div>
+
       </div>
 
-      <div class="hero-visual">
-        <div class="hero-glow"></div>
-        <div class="hero-frame glass blob">
-          <img src="images/hero.jpg" alt="Featured Dillu Captures photograph"
-               onerror="this.src='https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1400&q=90'">
-          <div class="image-shade"></div>
-
-          <div class="featured">
-            <div>
-              <small>FEATURED FRAME</small>
-              <strong>Light Finds Us</strong>
+      <!-- Hero Featured Visual Frame -->
+      <div class="lg:col-span-5 relative z-10">
+        <div class="relative mx-auto max-w-md lg:max-w-none">
+          <div class="relative glass-card p-3 rounded-3xl overflow-hidden group">
+            <div class="relative aspect-[4/5] rounded-2xl overflow-hidden bg-neutral-900">
+              <img 
+                src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1000&q=80" 
+                alt="Aura Studio Featured Work" 
+                onerror="this.src='https://placehold.co/800x1000/1e1e2d/ffffff?text=Aura+Studios';"
+                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-1000 ease-out"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80"></div>
+              
+              <!-- Floating Overlay Badge -->
+              <div class="absolute bottom-5 inset-x-5 glass-pill p-4 rounded-xl flex items-center justify-between">
+                <div>
+                  <span class="text-[9px] font-bold uppercase tracking-widest text-purple-400 block">Featured Frame</span>
+                  <span class="text-xs font-serif font-medium text-white">Shinjuku Midnight Reflections</span>
+                </div>
+                <span class="text-[10px] font-mono text-slate-300">f/1.4 • 1/500s</span>
+              </div>
             </div>
-            <div class="round-arrow">↗</div>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- GALLERY -->
-    <section id="work" class="container section">
-      <div class="section-head">
-        <div>
-          <div class="label">SELECTED WORK</div>
-          <h2>A gallery with <span class="muted-title">breathing room.</span></h2>
-        </div>
+    </div>
+  </section>
 
-        <div class="glass filters" id="filters">
-          <button class="filter active" data-filter="All">All</button>
-          <button class="filter" data-filter="Portrait">Portrait</button>
-          <button class="filter" data-filter="Wedding">Wedding</button>
-          <button class="filter" data-filter="Editorial">Editorial</button>
-          <button class="filter" data-filter="Travel">Travel</button>
-          <button class="filter" data-filter="Architecture">Architecture</button>
-        </div>
-      </div>
+  <!-- Filterable Gallery Section -->
+  <section id="gallery" class="py-24 px-4 md:px-8 max-w-7xl mx-auto relative z-10">
+    
+    <!-- Header -->
+    <div class="text-center max-w-2xl mx-auto space-y-3 mb-12 reveal">
+      <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-purple-500">Selected Works</span>
+      <h2 class="text-4xl md:text-5xl font-serif">Curated Gallery</h2>
+      <p class="text-xs md:text-sm font-light opacity-70">Filtered by genre. Click any master frame for high-resolution inspection and EXIF metadata.</p>
+    </div>
 
-      <div class="masonry" id="gallery"></div>
-    </section>
+    <!-- Category Filters -->
+    <div class="flex flex-wrap justify-center items-center gap-2 mb-12 reveal">
+      <button class="filter-btn active glass-pill px-5 py-2 rounded-full text-[11px] font-semibold tracking-wider transition-all" data-filter="all">ALL WORKS</button>
+      <button class="filter-btn glass-btn px-5 py-2 rounded-full text-[11px] font-semibold tracking-wider opacity-70 transition-all" data-filter="editorial">EDITORIAL</button>
+      <button class="filter-btn glass-btn px-5 py-2 rounded-full text-[11px] font-semibold tracking-wider opacity-70 transition-all" data-filter="architecture">ARCHITECTURE</button>
+      <button class="filter-btn glass-btn px-5 py-2 rounded-full text-[11px] font-semibold tracking-wider opacity-70 transition-all" data-filter="landscape">LANDSCAPE</button>
+      <button class="filter-btn glass-btn px-5 py-2 rounded-full text-[11px] font-semibold tracking-wider opacity-70 transition-all" data-filter="portrait">PORTRAITS</button>
+    </div>
 
-    <!-- ABOUT -->
-    <section id="about" class="container section">
-      <div class="about-grid">
-        <div class="portrait-wrap">
-          <div class="portrait-glow"></div>
-          <div class="portrait-frame glass blob">
-            <img src="images/photographer.jpg" alt="Dillu Captures photographer portrait"
-                 onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1400&q=90'">
-            <div class="portrait-tag">DILLU · PHOTOGRAPHER</div>
+    <!-- Responsive Masonry Grid -->
+    <div id="gallery-grid" class="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+      <!-- Items generated by JavaScript -->
+    </div>
+
+  </section>
+
+  <!-- Before / After Retouching Showcase Section -->
+  <section id="showcase" class="py-24 px-4 md:px-8 max-w-6xl mx-auto relative z-10">
+    <div class="glass-card rounded-3xl p-6 md:p-10 border reveal">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <!-- Interactive Information -->
+        <div class="lg:col-span-5 space-y-5">
+          <div class="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-amber-500 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
+            <i class="fa-solid fa-sliders text-xs"></i>
+            <span>Interactive Retouching View</span>
           </div>
-        </div>
 
-        <div class="about-card glass">
-          <div class="label">ABOUT ME</div>
-
-          <h2>
-            I photograph the space
-            <span>between moments.</span>
-          </h2>
-
-          <p>
-            I’m Dillu, a photographer drawn to honest expressions, cinematic light,
-            and photographs that still feel personal years later. From intimate
-            portraits to celebrations and editorial stories, I build each frame
-            around the people inside it.
+          <h3 class="text-3xl md:text-4xl font-serif">Master Color Grading</h3>
+          <p class="text-xs md:text-sm font-light leading-relaxed opacity-80">
+            Drag the handle horizontally to evaluate the raw sensor data vs the final hand-crafted color grade and skin retouching.
           </p>
 
-          <p>
-            My approach is simple: observe first, direct gently, and let the image
-            breathe. The final photograph should feel polished without losing the
-            texture of the real moment.
-          </p>
-
-          <div class="skills">
-            <div class="skill">Lighting</div>
-            <div class="skill">Composition</div>
-            <div class="skill">Editorial</div>
-            <div class="skill">Portraits</div>
-            <div class="skill">Storytelling</div>
-            <div class="skill">Retouching</div>
-          </div>
-
-          <div class="socials">
-            <a class="social" href="https://instagram.com/" target="_blank" aria-label="Instagram">◎</a>
-            <a class="social" href="https://linkedin.com/" target="_blank" aria-label="LinkedIn">in</a>
-            <a class="social" href="mailto:hello@dillucaptures.com" aria-label="Email">✉</a>
+          <div class="space-y-2 text-xs font-mono opacity-70 pt-2">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-camera text-purple-400"></i>
+              <span>Shot on Hasselblad X2D 100C + XCD 85mm</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-palette text-amber-400"></i>
+              <span>Color Profile: Aura Film Emulation v3</span>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="container section" style="padding-top:30px">
-      <div class="contact-card glass">
-        <div class="contact-glow"></div>
+        <!-- Before/After Split Container -->
+        <div class="lg:col-span-7">
+          <div id="before-after-container" class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden select-none cursor-ew-resize border shadow-2xl">
+            
+            <!-- After Image (Edited Master) -->
+            <img 
+              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80" 
+              alt="After Color Grade" 
+              onerror="this.src='https://placehold.co/1200x900/1e1e2d/ffffff?text=Master+Grade';"
+              class="absolute inset-0 w-full h-full object-cover"
+            />
+            <span class="absolute top-4 right-4 bg-black/70 backdrop-blur-md text-[9px] uppercase font-bold tracking-widest text-white px-3 py-1 rounded-full border border-white/10">Color Graded</span>
 
-        <div class="contact-content">
-          <div class="label">LET’S CREATE</div>
-
-          <div class="contact-row">
-            <div>
-              <h2>
-                Have a story worth
-                <span>remembering?</span>
-              </h2>
+            <!-- Before Image Layer (Raw) -->
+            <div id="before-image-wrap" class="absolute inset-y-0 left-0 w-1/2 overflow-hidden border-r-2 border-white">
+              <img 
+                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80&sat=-80&con=10" 
+                alt="Before Edit" 
+                onerror="this.src='https://placehold.co/1200x900/11111a/ffffff?text=RAW+Capture';"
+                class="absolute inset-0 w-full h-full object-cover max-w-none"
+                id="before-img-element"
+              />
+              <span class="absolute top-4 left-4 bg-black/70 backdrop-blur-md text-[9px] uppercase font-bold tracking-widest text-slate-300 px-3 py-1 rounded-full border border-white/10">Unedited RAW</span>
             </div>
 
-            <a href="mailto:hello@dillucaptures.com" class="primary-btn">
-              Start a conversation ↗
-            </a>
+            <!-- Slider Control Handle -->
+            <div id="slider-handle" class="absolute top-0 bottom-0 left-1/2 -ml-3 w-6 flex items-center justify-center pointer-events-none">
+              <div class="w-7 h-7 rounded-full bg-white text-neutral-900 flex items-center justify-center shadow-xl text-xs font-bold">
+                <i class="fa-solid fa-left-right text-[9px]"></i>
+              </div>
+            </div>
+
           </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- About Photographer Section -->
+  <section id="about" class="py-24 px-4 md:px-8 max-w-6xl mx-auto relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Artist Portrait -->
+      <div class="lg:col-span-5 reveal">
+        <div class="relative glass-card p-3 rounded-3xl overflow-hidden">
+          <img 
+            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" 
+            alt="Lead Artist AURA Studios" 
+            onerror="this.src='https://placehold.co/800x1000/1e1e2d/ffffff?text=Aura+Artist';"
+            class="w-full aspect-[3/4] object-cover rounded-2xl"
+          />
         </div>
       </div>
 
-      <footer>
-        <div>© 2026 Dillu Captures. All rights reserved.</div>
-        <div>Photography · Hyderabad · India</div>
-      </footer>
-    </section>
-  </main>
+      <!-- Narrative -->
+      <div class="lg:col-span-7 space-y-6 reveal">
+        <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-purple-500">The Artist</span>
+        <h3 class="text-4xl md:text-5xl font-serif">Julian Vance</h3>
+        <p class="text-sm md:text-base font-light leading-relaxed opacity-80">
+          Founded on the philosophy that true art exists in subtle moments, AURA Studios crafts imagery that transcends conventional commercial photography.
+        </p>
+        <p class="text-xs md:text-sm font-light leading-relaxed opacity-70">
+          With assignments ranging from luxury architectural stills in Geneva to high-fashion campaigns in Milan, every image is meticulously sculpted using medium-format precision and bespoke lighting setups.
+        </p>
 
-  <!-- LIGHTBOX -->
-  <div class="lightbox" id="lightbox">
-    <div class="lightbox-inner glass">
-      <button class="close" id="closeLightbox" aria-label="Close">×</button>
-      <img id="lightboxImage" src="" alt="">
-      <div class="lightbox-caption">
-        <strong id="lightboxTitle"></strong>
-        <small id="lightboxMeta"></small>
+        <!-- Gear Badges -->
+        <div class="pt-2 space-y-3">
+          <h4 class="text-[10px] uppercase font-semibold tracking-widest opacity-60">Primary Precision Gear</h4>
+          <div class="flex flex-wrap gap-2">
+            <span class="glass-btn text-[11px] px-3.5 py-1.5 rounded-full font-mono">Hasselblad X2D 100C</span>
+            <span class="glass-btn text-[11px] px-3.5 py-1.5 rounded-full font-mono">Leica M11 Monochrom</span>
+            <span class="glass-btn text-[11px] px-3.5 py-1.5 rounded-full font-mono">Profoto Pro-11 Lighting</span>
+            <span class="glass-btn text-[11px] px-3.5 py-1.5 rounded-full font-mono">Capture One Pro</span>
+          </div>
+        </div>
+
       </div>
+
+    </div>
+  </section>
+
+  <!-- Services & Pricing Cards -->
+  <section id="services" class="py-24 px-4 md:px-8 max-w-6xl mx-auto relative z-10">
+    
+    <div class="text-center max-w-xl mx-auto space-y-3 mb-16 reveal">
+      <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-purple-500">Commissions</span>
+      <h2 class="text-4xl md:text-5xl font-serif">Services & Pricing</h2>
+      <p class="text-xs md:text-sm font-light opacity-70">Tailored packages designed for individuals, architects, and luxury editorial brands.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <!-- Card 1 -->
+      <div class="glass-card p-8 rounded-3xl flex flex-col justify-between space-y-8 reveal border">
+        <div class="space-y-4">
+          <span class="text-[10px] font-bold uppercase tracking-widest text-purple-400">Personal</span>
+          <h3 class="text-2xl font-serif">Fine Art Portraiture</h3>
+          <div class="text-3xl font-serif font-bold">$1,200 <span class="text-xs font-sans font-normal opacity-60">/ Session</span></div>
+          <ul class="space-y-3 text-xs font-light opacity-80 pt-4 border-t border-black/5 dark:border-white/5">
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400 text-[10px]"></i> 3 Hours Studio or Location</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400 text-[10px]"></i> 15 Hand-Mastered High-Res Files</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400 text-[10px]"></i> Full Commercial Usage License</li>
+          </ul>
+        </div>
+        <a href="#contact" class="glass-btn w-full py-3 rounded-xl text-center text-xs font-semibold uppercase tracking-wider block">Inquire Availability</a>
+      </div>
+
+      <!-- Card 2 (Featured) -->
+      <div class="glass-card p-8 rounded-3xl flex flex-col justify-between space-y-8 reveal border-purple-500/40 relative shadow-2xl">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-purple-600 text-white text-[9px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">
+          Most Requested
+        </div>
+        <div class="space-y-4">
+          <span class="text-[10px] font-bold uppercase tracking-widest text-amber-400">Commercial</span>
+          <h3 class="text-2xl font-serif">Architectural & Spaces</h3>
+          <div class="text-3xl font-serif font-bold">$2,800 <span class="text-xs font-sans font-normal opacity-60">/ Project</span></div>
+          <ul class="space-y-3 text-xs font-light opacity-80 pt-4 border-t border-black/5 dark:border-white/5">
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400 text-[10px]"></i> Full Day On-Site Production</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400 text-[10px]"></i> Interior & Exterior Blue Hour Captures</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400 text-[10px]"></i> Unlimited Worldwide Publishing Rights</li>
+          </ul>
+        </div>
+        <a href="#contact" class="w-full py-3 rounded-xl bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 text-center text-xs font-semibold uppercase tracking-wider block shadow-md">Book Campaign</a>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="glass-card p-8 rounded-3xl flex flex-col justify-between space-y-8 reveal border">
+        <div class="space-y-4">
+          <span class="text-[10px] font-bold uppercase tracking-widest text-indigo-400">Editorial</span>
+          <h3 class="text-2xl font-serif">Fashion & Lookbooks</h3>
+          <div class="text-3xl font-serif font-bold">$4,500 <span class="text-xs font-sans font-normal opacity-60">/ Day</span></div>
+          <ul class="space-y-3 text-xs font-light opacity-80 pt-4 border-t border-black/5 dark:border-white/5">
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400 text-[10px]"></i> Creative Direction & Lighting Team</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400 text-[10px]"></i> On-Site Capture One Digital Tech</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-400 text-[10px]"></i> Expedited 48-Hour Proofing Turnaround</li>
+          </ul>
+        </div>
+        <a href="#contact" class="glass-btn w-full py-3 rounded-xl text-center text-xs font-semibold uppercase tracking-wider block">Inquire Availability</a>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-24 px-4 md:px-8 max-w-4xl mx-auto relative z-10">
+    <div class="glass-card rounded-3xl p-8 md:p-12 border relative overflow-hidden reveal">
+      
+      <div class="text-center max-w-xl mx-auto space-y-3 mb-10">
+        <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-purple-500">Initiate Contact</span>
+        <h3 class="text-4xl font-serif">Let's Discuss Your Vision</h3>
+        <p class="text-xs md:text-sm font-light opacity-70">Submit your project details below. Direct response guaranteed within 24 business hours.</p>
+      </div>
+
+      <form id="contact-form" class="space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-1.5">
+            <label class="text-[10px] font-semibold uppercase tracking-wider opacity-70">Your Name</label>
+            <input type="text" required placeholder="Elena Rostova" class="w-full glass-input px-4 py-3 rounded-xl text-xs" />
+          </div>
+          <div class="space-y-1.5">
+            <label class="text-[10px] font-semibold uppercase tracking-wider opacity-70">Email Address</label>
+            <input type="email" required placeholder="elena@maison.com" class="w-full glass-input px-4 py-3 rounded-xl text-xs" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-1.5">
+            <label class="text-[10px] font-semibold uppercase tracking-wider opacity-70">Commission Category</label>
+            <select class="w-full glass-input px-4 py-3 rounded-xl text-xs bg-neutral-900 text-white dark:bg-neutral-900 dark:text-white">
+              <option value="portrait">Fine Art Portraiture</option>
+              <option value="architecture">Architectural & Spaces</option>
+              <option value="fashion">Fashion & Lookbook Editorial</option>
+              <option value="other">Bespoke Custom Project</option>
+            </select>
+          </div>
+          <div class="space-y-1.5">
+            <label class="text-[10px] font-semibold uppercase tracking-wider opacity-70">Target Date / Location</label>
+            <input type="text" placeholder="Paris / Q3 2026" class="w-full glass-input px-4 py-3 rounded-xl text-xs" />
+          </div>
+        </div>
+
+        <div class="space-y-1.5">
+          <label class="text-[10px] font-semibold uppercase tracking-wider opacity-70">Project Summary</label>
+          <textarea rows="4" required placeholder="Describe mood, deliverables, and expectations..." class="w-full glass-input px-4 py-3 rounded-xl text-xs resize-none"></textarea>
+        </div>
+
+        <button type="submit" class="w-full py-3.5 rounded-xl bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 font-semibold text-xs uppercase tracking-widest hover:opacity-90 transition-all shadow-lg flex items-center justify-center gap-2">
+          <span>Submit Commission Request</span>
+          <i class="fa-solid fa-paper-plane text-[10px]"></i>
+        </button>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 px-4 border-t border-black/5 dark:border-white/5 text-center relative z-10 text-xs opacity-60">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="font-serif font-bold text-base">AURA STUDIOS</span>
+        <span>— © 2026. All rights reserved.</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="#" class="hover:opacity-100 transition-opacity"><i class="fa-brands fa-instagram text-base"></i></a>
+        <a href="#" class="hover:opacity-100 transition-opacity"><i class="fa-brands fa-behance text-base"></i></a>
+        <a href="#" class="hover:opacity-100 transition-opacity"><i class="fa-brands fa-twitter text-base"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FULLSCREEN LIGHTBOX MODAL -->
+  <div id="lightbox-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 md:p-8 bg-black/90 backdrop-blur-2xl transition-all duration-300">
+    
+    <button id="lightbox-close" class="absolute top-6 right-6 w-10 h-10 rounded-full glass-btn text-white flex items-center justify-center z-10 text-base">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <button id="lightbox-prev" class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full glass-btn text-white flex items-center justify-center z-10 text-base">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <button id="lightbox-next" class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full glass-btn text-white flex items-center justify-center z-10 text-base">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+
+    <div class="w-full max-w-6xl h-full max-h-[85vh] glass-card rounded-3xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 border border-white/10 shadow-2xl">
+      
+      <!-- Image Render Frame -->
+      <div class="lg:col-span-8 bg-black/60 flex items-center justify-center relative p-4 overflow-hidden">
+        <img id="lightbox-img" src="" alt="Fullscreen View" class="max-h-full max-w-full object-contain rounded-xl" />
+      </div>
+
+      <!-- Metadata Panel -->
+      <div class="lg:col-span-4 p-6 md:p-8 flex flex-col justify-between overflow-y-auto bg-neutral-950/80 text-white space-y-6">
+        
+        <div class="space-y-6">
+          <div class="flex items-center justify-between">
+            <span id="lightbox-category" class="text-[9px] font-bold uppercase tracking-widest text-purple-400 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20">Category</span>
+          </div>
+
+          <div>
+            <h3 id="lightbox-title" class="text-2xl font-serif text-white mb-2">Title</h3>
+            <p id="lightbox-desc" class="text-xs font-light text-slate-400 leading-relaxed">Description...</p>
+          </div>
+
+          <!-- EXIF Meta Grid -->
+          <div class="space-y-3 pt-4 border-t border-white/10">
+            <h4 class="text-[10px] uppercase font-semibold text-slate-400 tracking-widest">EXIF Technical Data</h4>
+            <div class="grid grid-cols-2 gap-2.5 text-xs">
+              <div class="glass-btn p-2.5 rounded-xl border-white/10">
+                <span class="text-[9px] text-slate-500 block font-mono uppercase">Body</span>
+                <span id="exif-camera" class="font-medium text-slate-200">Hasselblad</span>
+              </div>
+              <div class="glass-btn p-2.5 rounded-xl border-white/10">
+                <span class="text-[9px] text-slate-500 block font-mono uppercase">Optics</span>
+                <span id="exif-lens" class="font-medium text-slate-200">85mm GM</span>
+              </div>
+              <div class="glass-btn p-2.5 rounded-xl border-white/10">
+                <span class="text-[9px] text-slate-500 block font-mono uppercase">Aperture / ISO</span>
+                <span id="exif-iso" class="font-medium text-slate-200">f/1.4 • 100</span>
+              </div>
+              <div class="glass-btn p-2.5 rounded-xl border-white/10">
+                <span class="text-[9px] text-slate-500 block font-mono uppercase">Shutter</span>
+                <span id="exif-shutter" class="font-medium text-slate-200">1/1000s</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button id="modal-dl-btn" class="w-full py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
+          <i class="fa-solid fa-download text-xs"></i>
+          <span>Download High-Res Proof</span>
+        </button>
+
+      </div>
+
     </div>
   </div>
 
+  <!-- Toast Notification Feedback -->
+  <div id="toast" class="fixed bottom-6 right-6 z-[120] glass-card border border-purple-500/40 px-5 py-4 rounded-2xl shadow-2xl flex items-center gap-3 text-xs">
+    <div class="w-7 h-7 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400">
+      <i class="fa-solid fa-check"></i>
+    </div>
+    <div>
+      <div id="toast-title" class="font-semibold">Request Received</div>
+      <div id="toast-msg" class="opacity-70 text-[11px]">We will reply within 24 hours.</div>
+    </div>
+  </div>
+
+  <!-- JavaScript Implementation -->
   <script>
-    const photos = [
-      {title:"Afterglow",category:"Portrait",year:"2026",image:"images/gallery1.jpg",alt:"Portrait photograph"},
-      {title:"Blue Hour",category:"Editorial",year:"2026",image:"images/gallery2.jpg",alt:"Editorial photograph"},
-      {title:"Quiet Geometry",category:"Architecture",year:"2025",image:"images/gallery3.jpg",alt:"Architecture photograph"},
-      {title:"Monsoon Roads",category:"Travel",year:"2026",image:"images/gallery4.jpg",alt:"Travel photograph"},
-      {title:"Soft Rituals",category:"Wedding",year:"2025",image:"images/gallery5.jpg",alt:"Wedding photograph"},
-      {title:"Still Water",category:"Travel",year:"2025",image:"images/gallery6.jpg",alt:"Landscape photograph"},
-      {title:"The Look",category:"Portrait",year:"2026",image:"images/gallery7.jpg",alt:"Portrait photograph"},
-      {title:"Golden Ceremony",category:"Wedding",year:"2026",image:"images/gallery8.jpg",alt:"Wedding photograph"}
+    // CURATED HIGH-DEFINITION PHOTOGRAPHY DATASET
+    const galleryItems = [
+      {
+        id: 1,
+        title: "Metropolis Blue Hour",
+        category: "architecture",
+        src: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1000&q=80",
+        camera: "Leica M11",
+        lens: "35mm Summilux",
+        iso: "f/2.0 • ISO 400",
+        shutter: "1/500s",
+        desc: "High contrast urban reflections captured in Tokyo during dusk transitions."
+      },
+      {
+        id: 2,
+        title: "Ethereal Shadows",
+        category: "portrait",
+        src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=80",
+        camera: "Hasselblad X2D",
+        lens: "90mm f/2.5",
+        iso: "f/2.5 • ISO 100",
+        shutter: "1/1000s",
+        desc: "Studio portraiture focusing on soft chiaroscuro lighting and raw expression."
+      },
+      {
+        id: 3,
+        title: "Fjord Silence",
+        category: "landscape",
+        src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80",
+        camera: "Sony A7R V",
+        lens: "24-70mm GM II",
+        iso: "f/8.0 • ISO 100",
+        shutter: "1/250s",
+        desc: "Crisp atmospheric morning light breaking through sea fog in Norway."
+      },
+      {
+        id: 4,
+        title: "Minimalist Geometry",
+        category: "architecture",
+        src: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1000&q=80",
+        camera: "Sony A7R V",
+        lens: "16-35mm GM",
+        iso: "f/5.6 • ISO 100",
+        shutter: "1/400s",
+        desc: "Structural study exploring clean lines, concrete textures, and sky balance."
+      },
+      {
+        id: 5,
+        title: "Maison Noir Campaign",
+        category: "editorial",
+        src: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1000&q=80",
+        camera: "Canon R5",
+        lens: "50mm f/1.2 L",
+        iso: "f/1.8 • ISO 200",
+        shutter: "1/2000s",
+        desc: "Outdoor fashion lookbook commissioned for Paris Autumn Fashion Week."
+      },
+      {
+        id: 6,
+        title: "Alpine Ridge",
+        category: "landscape",
+        src: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1000&q=80",
+        camera: "Hasselblad X2D",
+        lens: "38mm f/2.5",
+        iso: "f/11 • ISO 64",
+        shutter: "1/125s",
+        desc: "High altitude panoramic photography of the Swiss Alps in early winter."
+      }
     ];
 
-    const fallbackImages = [
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1400&q=88",
-      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1400&q=88",
-      "https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1400&q=88",
-      "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1400&q=88",
-      "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=88",
-      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=88",
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1400&q=88",
-      "https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=1400&q=88"
-    ];
+    let currentPhotoIndex = 0;
+    let filteredItems = [...galleryItems];
 
-    const gallery = document.getElementById("gallery");
-    const filters = document.querySelectorAll(".filter");
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImage = document.getElementById("lightboxImage");
-    const lightboxTitle = document.getElementById("lightboxTitle");
-    const lightboxMeta = document.getElementById("lightboxMeta");
+    // THEME SWITCHING SYSTEM
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const htmlEl = document.documentElement;
 
-    function renderGallery(category = "All"){
-      gallery.innerHTML = "";
+    themeToggleBtn.addEventListener('click', () => {
+      htmlEl.classList.toggle('dark');
+      const isDark = htmlEl.classList.contains('dark');
+      localStorage.setItem('aura-theme', isDark ? 'dark' : 'light');
+    });
 
-      photos
-        .filter(photo => category === "All" || photo.category === category)
-        .forEach((photo,index) => {
-          const item = document.createElement("article");
-          item.className = "gallery-item";
-          item.style.animationDelay = `${index * 70}ms`;
+    // Check system or cached preference
+    if (localStorage.getItem('aura-theme') === 'light') {
+      htmlEl.classList.remove('dark');
+    }
 
-          const card = document.createElement("div");
-          card.className = "gallery-card";
+    // GALLERY MASONRY RENDER
+    function renderGallery(items) {
+      const grid = document.getElementById('gallery-grid');
+      grid.innerHTML = '';
 
-          const img = document.createElement("img");
-          img.src = photo.image;
-          img.alt = photo.alt;
-          img.loading = "lazy";
-
-          img.onerror = function(){
-            this.onerror = null;
-            this.src = fallbackImages[photos.indexOf(photo)];
-          };
-
-          const info = document.createElement("div");
-          info.className = "gallery-info";
-          info.innerHTML = `
-            <div>
-              <div class="gallery-title">${photo.title}</div>
-              <div class="gallery-meta">${photo.category} · ${photo.year}</div>
+      items.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = 'gallery-item group relative glass-card rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 hover:-translate-y-2 border';
+        card.innerHTML = `
+          <div class="relative aspect-auto overflow-hidden bg-neutral-900">
+            <img 
+              src="${item.src}" 
+              alt="${item.title}" 
+              loading="lazy"
+              onerror="this.src='https://placehold.co/800x1000/1e1e2d/ffffff?text=${encodeURIComponent(item.title)}';"
+              class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-neutral-950/90 via-neutral-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 text-white">
+              <span class="text-[9px] font-bold uppercase tracking-widest text-purple-300 font-mono">${item.category}</span>
+              <h4 class="text-base font-serif font-semibold">${item.title}</h4>
+              <div class="flex items-center justify-between text-[10px] opacity-75 font-mono mt-2 pt-2 border-t border-white/10">
+                <span>${item.camera}</span>
+                <span>${item.iso}</span>
+              </div>
             </div>
-            <div class="round-arrow" style="width:36px;height:36px;font-size:14px">↗</div>
-          `;
+          </div>
+        `;
 
-          card.appendChild(img);
-          card.appendChild(info);
-          item.appendChild(card);
-
-          item.addEventListener("click",() => openLightbox(photo));
-          gallery.appendChild(item);
-        });
+        card.addEventListener('click', () => openLightbox(index));
+        grid.appendChild(card);
+      });
     }
 
-    filters.forEach(button => {
-      button.addEventListener("click",() => {
-        filters.forEach(b => b.classList.remove("active"));
-        button.classList.add("active");
-        renderGallery(button.dataset.filter);
+    // LIGHTBOX CONTROLS
+    const modal = document.getElementById('lightbox-modal');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxTitle = document.getElementById('lightbox-title');
+    const lightboxCategory = document.getElementById('lightbox-category');
+    const lightboxDesc = document.getElementById('lightbox-desc');
+    const exifCamera = document.getElementById('exif-camera');
+    const exifLens = document.getElementById('exif-lens');
+    const exifIso = document.getElementById('exif-iso');
+    const exifShutter = document.getElementById('exif-shutter');
+
+    function openLightbox(index) {
+      currentPhotoIndex = index;
+      updateLightboxContent();
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function updateLightboxContent() {
+      const item = filteredItems[currentPhotoIndex];
+      lightboxImg.src = item.src;
+      lightboxTitle.textContent = item.title;
+      lightboxCategory.textContent = item.category;
+      lightboxDesc.textContent = item.desc;
+      exifCamera.textContent = item.camera;
+      exifLens.textContent = item.lens;
+      exifIso.textContent = item.iso;
+      exifShutter.textContent = item.shutter;
+    }
+
+    function closeLightbox() {
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+    document.getElementById('lightbox-prev').addEventListener('click', () => {
+      currentPhotoIndex = (currentPhotoIndex - 1 + filteredItems.length) % filteredItems.length;
+      updateLightboxContent();
+    });
+    document.getElementById('lightbox-next').addEventListener('click', () => {
+      currentPhotoIndex = (currentPhotoIndex + 1) % filteredItems.length;
+      updateLightboxContent();
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (!modal.classList.contains('hidden')) {
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') {
+          currentPhotoIndex = (currentPhotoIndex - 1 + filteredItems.length) % filteredItems.length;
+          updateLightboxContent();
+        }
+        if (e.key === 'ArrowRight') {
+          currentPhotoIndex = (currentPhotoIndex + 1) % filteredItems.length;
+          updateLightboxContent();
+        }
+      }
+    });
+
+    // FILTER TAB SWITCHING
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active', 'opacity-100'));
+        filterBtns.forEach(b => b.classList.add('opacity-70'));
+        btn.classList.add('active', 'opacity-100');
+
+        const cat = btn.getAttribute('data-filter');
+        filteredItems = cat === 'all' ? [...galleryItems] : galleryItems.filter(i => i.category === cat);
+        renderGallery(filteredItems);
       });
     });
 
-    function openLightbox(photo){
-      lightboxImage.src = photo.image;
-      lightboxImage.onerror = function(){
-        this.onerror = null;
-        this.src = fallbackImages[photos.indexOf(photo)];
-      };
-      lightboxImage.alt = photo.alt;
-      lightboxTitle.textContent = photo.title;
-      lightboxMeta.textContent = `${photo.category} · ${photo.year}`;
-      lightbox.classList.add("show");
-      document.body.classList.add("modal-open");
+    // BEFORE / AFTER SLIDER LOGIC
+    const sliderContainer = document.getElementById('before-after-container');
+    const beforeWrap = document.getElementById('before-image-wrap');
+    const beforeImg = document.getElementById('before-img-element');
+    const sliderHandle = document.getElementById('slider-handle');
+
+    let isSliding = false;
+
+    function setSliderPosition(x) {
+      const rect = sliderContainer.getBoundingClientRect();
+      let offsetX = x - rect.left;
+      if (offsetX < 0) offsetX = 0;
+      if (offsetX > rect.width) offsetX = rect.width;
+
+      const percentage = (offsetX / rect.width) * 100;
+      beforeWrap.style.width = `${percentage}%`;
+      sliderHandle.style.left = `${percentage}%`;
+      beforeImg.style.width = `${rect.width}px`;
     }
 
-    function closeLightbox(){
-      lightbox.classList.remove("show");
-      document.body.classList.remove("modal-open");
-    }
-
-    document.getElementById("closeLightbox").addEventListener("click",closeLightbox);
-
-    lightbox.addEventListener("click",e => {
-      if(e.target === lightbox) closeLightbox();
+    sliderContainer.addEventListener('mousedown', (e) => {
+      isSliding = true;
+      setSliderPosition(e.clientX);
     });
 
-    document.addEventListener("keydown",e => {
-      if(e.key === "Escape") closeLightbox();
+    window.addEventListener('mousemove', (e) => {
+      if (!isSliding) return;
+      setSliderPosition(e.clientX);
     });
 
-    /* Mobile navigation */
-    const menuBtn = document.getElementById("menuBtn");
-    const mobileMenu = document.getElementById("mobileMenu");
+    window.addEventListener('mouseup', () => { isSliding = false; });
 
-    menuBtn.addEventListener("click",() => {
-      mobileMenu.style.display =
-        mobileMenu.style.display === "none" ? "block" : "none";
+    // Touch Support for Slider
+    sliderContainer.addEventListener('touchstart', (e) => {
+      isSliding = true;
+      setSliderPosition(e.touches[0].clientX);
     });
 
-    document.querySelectorAll(".mobile-link").forEach(link => {
-      link.addEventListener("click",() => {
-        mobileMenu.style.display = "none";
+    window.addEventListener('touchmove', (e) => {
+      if (!isSliding) return;
+      setSliderPosition(e.touches[0].clientX);
+    });
+
+    window.addEventListener('touchend', () => { isSliding = false; });
+
+    // SCROLL REVEAL OBSERVER
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('active');
       });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // CURSOR LIGHT TRACKER
+    const cursorLight = document.getElementById('cursor-light');
+    window.addEventListener('mousemove', (e) => {
+      cursorLight.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
     });
 
-    renderGallery();
+    // MOBILE MENU
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+
+    // FORM & TOAST
+    const contactForm = document.getElementById('contact-form');
+    const toast = document.getElementById('toast');
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      toast.classList.add('show');
+      contactForm.reset();
+      setTimeout(() => toast.classList.remove('show'), 4000);
+    });
+
+    document.getElementById('modal-dl-btn').addEventListener('click', () => {
+      const toastTitle = document.getElementById('toast-title');
+      const toastMsg = document.getElementById('toast-msg');
+      toastTitle.textContent = "Proof Download Started";
+      toastMsg.textContent = "High-resolution watermarked archive generated.";
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    });
+
+    // INITIALIZATION
+    renderGallery(galleryItems);
   </script>
 </body>
 </html>
